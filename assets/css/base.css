@@ -333,4 +333,8 @@ body {
     .home > .home-products > .home-products-box > .product img {
         width: 100%;
     }
+
+    .news > .news-stories > .news-story {
+        grid-column: 1/6;
+    }
 }
