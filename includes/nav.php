@@ -1,10 +1,24 @@
 <nav class="navbar">
-        <a class="link" href=""><div>Om Klubben</div></a>
-        <a class="link" href=""><div>Nyheder</div></a>
-        <a class="link" href=""><div>Arrangementer</div></a>
-        <a class="link" href=""><div>Galleri</div></a>
-        <a class="link" href=""><div>Bådpark</div></a>
-        <a class="link" href=""><div>Bliv Medlem</div></a>
-        <a class="link" href=""><div>Min Side</div></a>
-        <a class="link" href=""><div>Kontakt</div></a>
-    </nav>
+        <a class="link" href="<?= Router::$BASE . 'Home' ?>"><div>Om Klubben</div></a>
+        <a class="link" href="<?= Router::$BASE . 'Home' ?>"><div>Nyheder</div></a>
+        <a class="link" href="<?= Router::$BASE . 'Home' ?>"><div>Arrangementer</div></a>
+        <a class="link" href="<?= Router::$BASE . 'Home' ?>"><div>Galleri</div></a>
+        <a class="link" href="<?= Router::$BASE . 'Home' ?>"><div>Bådpark</div></a>
+        <a class="link" href="<?= Router::$BASE . 'Home' ?>"><div>Bliv Medlem</div></a>
+        <a class="link" href="<?= Router::$BASE . 'Home' ?>"><div>Min Side</div></a>
+        <a class="link" href="<?= Router::$BASE . 'Home' ?>"><div>Kontakt</div></a>
+</nav>
+
+<nav class="navbar-mobile">
+<button onclick="myFunction()" class="dropbtn">Menu</button>
+  <div id="myDropdown" class="dropdown-content">
+        <a href="<?= Router::$BASE . 'Home' ?>"><div>Om Klubben</div></a>
+        <a href="<?= Router::$BASE . 'Home' ?>"><div>Nyheder</div></a>
+        <a href="<?= Router::$BASE . 'Home' ?>"><div>Arrangementer</div></a>
+        <a href="<?= Router::$BASE . 'Home' ?>"><div>Galleri</div></a>
+        <a href="<?= Router::$BASE . 'Home' ?>"><div>Bådpark</div></a>
+        <a href="<?= Router::$BASE . 'Home' ?>"><div>Bliv Medlem</div></a>
+        <a href="<?= Router::$BASE . 'Home' ?>"><div>Min Side</div></a>
+        <a href="<?= Router::$BASE . 'Home' ?>"><div>Kontakt</div></a>
+  </div>
+</nav>

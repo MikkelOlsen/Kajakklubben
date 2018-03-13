@@ -1,3 +1,1 @@
-<img src="http://via.placeholder.com/1920x300" alt="">
-
-
+<h1>Kajakklubben Pagaj</h1>

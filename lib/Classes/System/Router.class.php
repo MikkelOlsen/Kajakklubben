@@ -106,7 +106,7 @@ class Router extends \PDO
         self::$RouteIndex = $routeIndex;
         $match = true;
         $URLparams = array_slice($newPath, $x, count($newPath));
-        self::$View = $singleRoute['view'];
+        self::$View = self::$ViewFolder . DS . $singleRoute['view'];
         if(array_key_exists('params', $singleRoute) && sizeof($singleRoute['params']) > 0)
         {
             for($ParamCnt = 0; $ParamCnt < count($URLparams); $ParamCnt++)
