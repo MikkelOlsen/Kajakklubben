@@ -1,52 +1,145 @@
 <?php
 
-
-class Token{
-    public $token;
-    public $maxAge = 300;
+class Validate{
+    public static $phoneFormatted;
     /**
-     * Generates token in HEX 
+     * Validates name and checks that it is characters only
      *
-     * @return void
-     */
-    public static function generateToken(string $tokenName = 'default') : void
-    {
-        //if(empty($_SESSION['token']) && (empty($_SESSION['tokenAge']) || (time() - (int)$_SESSION['tokenAge']) > (int)$this->maxAge)){
-            if(function_exists('random_bytes')){
-                $_SESSION['token'][$tokenName] = bin2hex(random_bytes(32));
-            }elseif(function_exists('mcrypt_create_iv')){
-                $_SESSION['token'][$tokenName] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-            }else{
-                $_SESSION['token'][$tokenName] = bin2hex(openssl_random_pseudo_bytes(32));
-            }
-            $_SESSION['tokenAge'][$tokenName] = time();
-        //}        
-    }
-    /**
-     * Checks token and the time bewteen token created and token age after POST
-     *
-     * @param string $token
-     * @param int $maxAge (default = 300)
+     * @param string $char
+     * @param int $min (default = 2) 
+     * @param int $max (default = 25)
      * @return bool
      */
-    public static function validateToken(string $tokenName = 'default', string $tokenvalue, int $maxAge = 300) : bool
+    public static function characters(string $char, int $min = 2,int $max = 25) : bool
     {
-        $this->maxAge = $maxAge;
-        if($tokenvalue != $_SESSION['token'][$tokenName] || ((time() - (int)$_SESSION['tokenAge'][$tokenName]) > (int)$this->maxAge)){
-            return false;
-        }else{
-            unset($_SESSION['token'][$tokenName], $_SESSION['tokenAge'][$tokenName]);
-            return true;
-        }
+        return (
+            isset($char) && 
+            strlen((string)$char) >= (int)$min && 
+            strlen((string)$char) <= (int)$max && 
+            preg_match("/[a-zæøåäüö]+$/i", $char)
+        ) ? true : false;
     }
     /**
-     * Create hidden input[name=_once | value=token] field with session token
+     * Birthdate check if the date is valid (Not all datformats supported)
      *
-     * @return string html entity
+     * @param string $date
+     * @return bool
      */
-    public static function createTokenInput(string $tokenName = 'default') : string
+    public static function birthdate(string $date) : bool
     {
-        $this->generateToken($tokenName);
-        return '<input type="hidden" name="_once_' . $tokenName . '" value="' . $_SESSION['token'][$tokenName] . '">';
+        return
+        (
+            isset($date) &&
+            (preg_match("~^\d{2}-\d{2}-\d{4}$~", $date) ||
+            preg_match("~^\d{2}/\d{2}/\d{4}$~", $date) ||
+            preg_match("~^\d{4}-\d{2}-\d{2}$~", $date) ||
+            preg_match("~^\d{4}/\d{2}/\d{2}$~", $date))
+        ) ? true : false;
+    }
+    
+    /**
+     * stringBetween checks string with both aplhanumeric & charcters on specific length
+     *
+     * @param string $str
+     * @param int $min (default = 2)
+     * @param int $max (default = 68)
+     * @return bool
+     */
+    public static function stringBetween(string $str, int $min = 2, int $max = 68) : bool
+    {
+        return (
+            isset($str) &&
+            strlen((string)$str) >= (int)$min && 
+            strlen((string)$str) <= (int)$max && 
+            preg_match("/[a-zæøåäüö\s0-9,.]+$/i", $str)
+        ) ? true : false;
+    }
+
+    public static function currency(mixed $currency) : bool
+    {
+        return (
+            isset($currency) && !empty($currency) &&
+            preg_match("/^[0-9]+(?:\.[,0-9]{1,3})?$/im", $currency)
+        ) ? true: false;
+    }
+
+    /**
+     * intBetween check for int only and the min, max given
+     *
+     * @param string $int
+     * @param int $min (default = 4)
+     * @param int $max (default = 5)
+     * @return bool
+     */
+    public static function intBetween(int $int, int $min = 4, int $max = 5) : bool
+    {
+        return (
+            isset($int) &&
+            is_numeric($int) &&
+            strlen((string)$int) >= (int)$min && 
+            strlen((string)$int) <= (int)$max
+        ) ? true : false;
+    }
+
+    /**
+     * Check if phonenumber is valid with country code included
+     *
+     * @param string $num
+     * @return bool
+     */
+    public static function phone(int $num) : bool
+    {
+        if(isset($num) && strlen($num) >= 8 ){
+            $num = str_replace(' ', '', $num);
+            $num = (int)preg_replace("/(^[+]\d{2} | ^00\d{2})/x", "", $num);
+            if(is_numeric($num)){
+                self::$phoneFormatted = $num;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * E-mail validation with PHP filter_var
+     *
+     * @param string $email
+     * @return bool
+     */
+    public static function email(string $email) : bool
+    {
+        return (
+            isset($email) &&
+            filter_var($email, FILTER_VALIDATE_EMAIL)
+        ) ? true : false;
+    }
+
+    /**
+     * check if the 2 parameters if the same dataypte
+     *
+     * @param mixed $x
+     * @param mixed $y
+     * @return bool
+     */
+    public static function match($x, $y) : bool
+    {
+        return $x === $y ? true : false;
+    }
+
+    /**
+     * Checks if $var is set and greater or equals to $min
+     *
+     * @param mixed $var
+     * @param int $min
+     * @param int $max
+     * @return bool
+     */
+    public static function mixedBetween(string $var, int $min = 2, int $max = 255) : bool
+    {
+        return (
+            isset($var) &&
+            strlen($var) >= $min && 
+            strlen($var) <= $max
+        ) ? true : false;
     }
 }
