@@ -22,6 +22,7 @@
 .header { 
     grid-area: header; 
     background: linear-gradient( rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/header.jpg'); 
+    background-position: center;
     display: grid; 
     justify-items: center; 
     align-items: center; 
@@ -37,7 +38,7 @@ body {
 	grid-template-areas: "header header header"
 	                     ". main ."
 	                     "footer footer footer";
-	grid-template-columns: 450px 1fr 450px;
+	grid-template-columns: 1fr 1000px 1fr;
 	grid-template-rows: 400px 
 						1fr
 						30px;
@@ -334,10 +335,73 @@ body {
     padding: 3px;
 }
 
+.event img {
+    width: 100%;
+}
+
 .event > .event-text {
     display: grid;
     max-width: 900px;
 }
+
+
+/*=============================================
+=                  Gallery                    =
+=============================================*/
+
+.gallery {
+    display: grid;
+}
+
+.gallery h2 {
+    padding-bottom: 10px;
+}
+
+.gallery > .albums {
+    width: 100%;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.gallery > .albums img {
+    width: 100%;
+    height: 100%;
+}
+
+.gallery > .albums .album {
+    position: relative;
+}
+
+.gallery > .albums .album .album-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(160,160,160, 0.8);
+}
+
+.gallery > .albums > .album:hover .album-overlay {
+    opacity: 1;
+}
+
+.gallery > .albums > .album .album-overlay > .album-name {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
 
 
 
@@ -370,7 +434,7 @@ body {
 
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
 	body {
 		grid-template-areas: "header"
 		                     "main"
@@ -385,6 +449,8 @@ body {
         font-size: 20px;
         background: linear-gradient( rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../images/header-mobile.jpg'); 
         background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .main > .navbar {
@@ -424,5 +490,19 @@ body {
 
     .event img {
         max-width: 100%;
+    }
+
+    .gallery > .albums {
+        grid-template: repeat(6, 1fr) / repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 999px) {
+    body {
+        grid-template-columns: 5px 1fr 5px;
+    }
+
+    .home {
+        grid-template-columns: 2fr 1fr;
     }
 }

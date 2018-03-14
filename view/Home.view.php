@@ -25,7 +25,7 @@
                 <h2>Nyheder</h2>
                 <p>07/04 Nye kajakker til salg</p>
                 <p>15/02 Pagaj-medlemmer vinder...</p>
-                <a href="<?= Router::$BASE . 'Home' ?>">Nyheder >></a>
+                <a href="<?= Router::$BASE . 'Nyheder' ?>">Nyheder >></a>
             </div>
         </div>
         <div class="home-news">
@@ -34,7 +34,7 @@
                 <h2>Nyheder</h2>
                 <p>07/04 Nye kajakker til salg</p>
                 <p>15/02 Pagaj-medlemmer vinder...</p>
-                <a href="<?= Router::$BASE . 'Home' ?>">Nyheder >></a>
+                <a href="<?= Router::$BASE . 'Nyheder' ?>">Nyheder >></a>
             </div>
         </div>
     </div>

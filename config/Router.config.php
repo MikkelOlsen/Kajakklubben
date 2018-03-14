@@ -3,16 +3,22 @@
   Router::SetDefaultRoute('/Home');
   CONST ROUTES = array(
     [
-      'path' => '/Home',
+      'path' => '/Om-Klubben',
       'view' => 'Home.view.php'
     ],
     [
-      'path' => '/News',
-      'view' => 'News.view.php'
+      'path' => '/Nyheder',
+      'view' => 'News.view.php',
+      'params' => ['page']
     ],
     [
-      'path' => '/Events',
+      'path' => '/Arrangementer',
       'view' => 'Events.view.php'
+    ],
+    [
+      'path' => '/Galleri',
+      'view' => 'Gallery.view.php',
+      'params' => ['album', 'page']
     ]
   );
 ?>

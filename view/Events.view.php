@@ -10,7 +10,7 @@
             <h3>Sommerafslutning</h3>
             <p><?= strftime("%e. %B - %Y") ?></p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, temporibus consectetur? Praesentium temporibus accusamus fugiat, dolore ad voluptates ipsa facilis iusto exercitationem, quasi tenetur nemo mollitia quia quis natus officia!</p>
-            <a href="<?= Router::$BASE . 'Home' ?>">Tilmeld</a>
+            <a href="<?= Router::$BASE . 'Om-Klubben' ?>">Tilmeld</a>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
             <h3>Sommerafslutning</h3>
             <p><?= strftime("%e. %B - %Y") ?></p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, temporibus consectetur? Praesentium temporibus accusamus fugiat, dolore ad voluptates ipsa facilis iusto exercitationem, quasi tenetur nemo mollitia quia quis natus officia!</p>
-            <a href="<?= Router::$BASE . 'Home' ?>">Tilmeld</a>
+            <a href="<?= Router::$BASE . 'Om-Klubben' ?>">Tilmeld</a>
         </div>
     </div>
 </div>
