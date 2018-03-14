@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Bitter|Peddana');
 
-/* Default margin and padding reset */
+
+/*=============================================
+=           Margin & Padding Reset            =
+=============================================*/
+
 
 * {
     margin: 0;
@@ -9,7 +13,11 @@
 
 
 
-/* Overall Styling */
+
+/*=============================================
+=                Main Styling                 =
+=============================================*/
+
 
 .header { 
     grid-area: header; 
@@ -41,12 +49,16 @@ body {
     font-family: 'Bitter', serif;
 }
 
-.main-content h2 {
+.main-content h2, .main-content h3 {
     font-weight: 200;
 }
 
 
-/* Navigation */
+
+/*=============================================
+=                  Navigation                 =
+=============================================*/
+
 
 .main > .navbar {
     display: flex;
@@ -111,7 +123,11 @@ body {
 
 
 
-/* Frontpage */
+
+/*=============================================
+=                     Home                    =
+=============================================*/
+
 
 .home {
     display: grid;
@@ -222,7 +238,10 @@ body {
 }
 
 
-/* News page */
+
+/*=============================================
+=                    NEWS                     =
+=============================================*/
 
 .news {
     display: grid;
@@ -268,7 +287,67 @@ body {
 }
 
 
-/* Footer */
+
+/*=============================================
+=                   Events                    =
+=============================================*/
+
+.events {
+    display: grid;
+}
+
+.events h2 {
+    padding-bottom: 10px;
+}
+
+.event {
+    padding: 10px;
+    margin-bottom: 30px;
+    display: grid;
+    -webkit-box-shadow: 0px 2px 3px 2px rgba(176,174,176,0.75);
+    -moz-box-shadow: 0px 2px 3px 2px rgba(176,174,176,0.75);
+    box-shadow: 0px 2px 3px 2px rgba(176,174,176,0.75);
+    justify-self: center;
+    justify-items: center;
+}
+
+.event h3 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.event p {
+    padding-bottom: 10px;
+}
+
+.event a  {
+    justify-self: end;
+    height: 30px;
+    background-color: #ffa939;
+    box-shadow: none;
+    border: none;
+    color: white;
+    line-height: 30px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10px;
+    padding: 3px;
+}
+
+.event > .event-text {
+    display: grid;
+    max-width: 900px;
+}
+
+
+
+
+
+
+
+/*=============================================
+=                  Footer                     =
+=============================================*/
 
 .footer {
     background-color: #333;
@@ -283,6 +362,11 @@ body {
 
 
 
+
+
+/*=============================================
+=                Media Queries                =
+=============================================*/
 
 
 
@@ -336,5 +420,9 @@ body {
 
     .news > .news-stories > .news-story {
         grid-column: 1/6;
+    }
+
+    .event img {
+        max-width: 100%;
     }
 }

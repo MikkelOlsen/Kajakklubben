@@ -9,6 +9,10 @@
     [
       'path' => '/News',
       'view' => 'News.view.php'
+    ],
+    [
+      'path' => '/Events',
+      'view' => 'Events.view.php'
     ]
   );
 ?>

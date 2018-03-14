@@ -25,7 +25,7 @@
                 <h2>Nyheder</h2>
                 <p>07/04 Nye kajakker til salg</p>
                 <p>15/02 Pagaj-medlemmer vinder...</p>
-                <a class="link-button" href="<?= Router::$BASE . 'Home' ?>">Nyheder >></a>
+                <a href="<?= Router::$BASE . 'Home' ?>">Nyheder >></a>
             </div>
         </div>
         <div class="home-news">
@@ -46,11 +46,11 @@
                 <a href="" >Blå Kajak <br> 799 DKK</a>
             </div>
             <div class="product">
-                <img src="./assets/images/kajak01.jpg" alt="">
+                <img src="./assets/images/kajak02.jpg" alt="">
                 <a href="" >Blå Kajak <br> 799 DKK</a>
             </div>
             <div class="product">
-                <img src="./assets/images/kajak01.jpg" alt="">
+                <img src="./assets/images/kajak03.jpg" alt="">
                 <a href="" >Blå Kajak <br> 799 DKK</a>
             </div>
         </div>
