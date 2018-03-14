@@ -22,6 +22,6 @@
                 <p>Kajaktur 26-06-2016</p>
         </div>
     </div>
-    <a href="/Admin">Til Administration</a>
+    <a href="<?= Router::$BASE . 'Admin' ?>">Til Administration</a>
 
 </div>

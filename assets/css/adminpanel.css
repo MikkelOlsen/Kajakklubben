@@ -1,0 +1,114 @@
+#view-source {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+  }
+  
+  html, body {
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+  }
+  
+  .demo-layout {
+    display: grid;
+    grid-template-rows: 65px auto;
+    grid-template-columns: 240px auto;
+    grid-template-areas: "nav header"
+                         "nav main";
+  }
+  
+  .mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen) > .mdl-layout__header {
+    margin: 0;
+    width: 100%;
+    grid-area: header;
+    background-color: #1f1f1f;
+  }
+  
+  .mdl-layout__drawer .avatar {
+    margin-bottom: 16px;
+  }
+  .demo-drawer {
+    border: none;
+    grid-area: nav;
+  }
+  
+  main {
+    grid-area: main;
+    background-color: #2a2c2d;
+    color: #b7b7b7;
+  }
+  /* iOS Safari specific workaround */
+  .demo-drawer .mdl-menu__container {
+    z-index: -1;
+  }
+  .demo-drawer .demo-navigation {
+    z-index: -2;
+    background-color: #1f1f1f;
+  }
+  /* END iOS Safari specific workaround */
+  .demo-drawer .mdl-menu .mdl-menu__item {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .demo-drawer-header {
+    box-sizing: border-box;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 16px;
+    height: 65px;
+    background-color: #181818;
+    color: #878787;
+  }
+  
+  .demo-navigation {
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+  }
+  .demo-layout .demo-navigation .mdl-navigation__link {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: rgba(255, 255, 255, 0.56);
+    font-weight: 500;
+  }
+  .demo-layout .demo-navigation .mdl-navigation__link:hover {
+    background-color: #00BCD4;
+    color: white;
+  }
+  .demo-navigation .mdl-navigation__link .material-icons {
+    font-size: 24px;
+    color: white;
+    margin-right: 32px;
+  }
+  .mdl-layout__drawer .mdl-navigation {
+    padding-top: 0;
+  }
+  
+  .demo-content {
+    display: grid;
+  }
+
+  @media screen and (max-width: 1040px) {
+    .demo-layout {
+      grid-template-areas: "nav header"
+                           "nav main";
+      background-color: #1f1f1f;
+    }
+}
+  
+  
