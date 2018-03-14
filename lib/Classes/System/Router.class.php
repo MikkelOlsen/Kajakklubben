@@ -7,7 +7,8 @@ class Router extends \PDO
 
   public static       $Params = [],
                       $BASE   = null,
-                      $View   = null;
+                      $View   = null,
+                      $Layout = null;
 
   private static      $RouteIndex   = null,
                       $Routes       = null,
@@ -39,6 +40,10 @@ class Router extends \PDO
     public static function SetDefaultRoute(string $route) : void
     {
         self::$DefaultRoute = $route;
+    }
+    public static function SetDefaultLayout(string $layout) : void
+    {
+        self::$Layout = $layout;
     }
 
   public static function GetParamByName(string $param) : string
@@ -107,6 +112,10 @@ class Router extends \PDO
         $match = true;
         $URLparams = array_slice($newPath, $x, count($newPath));
         self::$View = self::$ViewFolder . DS . $singleRoute['view'];
+        if(array_key_exists('layout', $singleRoute) && !empty($singleRoute['layout'])) 
+        {
+          self::$Layout = $singleRoute['layout'];
+        }
         if(array_key_exists('params', $singleRoute) && sizeof($singleRoute['params']) > 0)
         {
             for($ParamCnt = 0; $ParamCnt < count($URLparams); $ParamCnt++)

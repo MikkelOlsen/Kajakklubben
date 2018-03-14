@@ -41,7 +41,7 @@ body {
 	grid-template-columns: 1fr 1000px 1fr;
 	grid-template-rows: 400px 
 						1fr
-						30px;
+						40px;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -498,6 +498,17 @@ body {
     font-weight: bold;
 }
 
+.profile a {
+    color: white;
+    line-height: 20px;
+    background-color: orange;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
 
 
 /*=============================================
@@ -576,6 +587,13 @@ body {
     align-items: center;
 }
 
+.footer-content {
+    width: 50%;
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+}
+
 
 
 
@@ -593,7 +611,7 @@ body {
 		grid-template-columns: 100%;
 		grid-template-rows: 100px 
 							1fr
-							30px;
+							50px;
     }
 
     .header {
@@ -602,6 +620,12 @@ body {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+    .footer-content {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        grid-row-gap: 5px;
     }
 
     .main > .navbar {
@@ -687,14 +711,27 @@ body {
 
 @media screen and (min-width: 768px) and (max-width: 999px) {
     body {
-        grid-template-columns: 5px 1fr 5px;
+        grid-template-columns: 5px auto 5px;
+		grid-template-rows: 200px 
+							auto
+							50px;
     }
 
-    .home {
-        grid-template-columns: 2fr 1fr;
+    .home > .home-products > .home-products-box {
+        grid-template-columns: 1fr 1fr;
     }
 
     .boats-table th:first-of-type {
         width: 270px;
+    }
+
+    .gallery > .albums {
+        grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+    }
+
+    .footer-content {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        grid-row-gap: 5px;
     }
 }

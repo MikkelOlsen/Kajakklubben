@@ -1,6 +1,7 @@
 <?php
   Router::SetViewFoler(__ROOT__ . DS . 'view' . DS);
   Router::SetDefaultRoute('/Om-Klubben');
+  Router::SetDefaultLayout('Frontend');
   CONST ROUTES = array(
     [
       'path' => '/Om-Klubben',
@@ -43,6 +44,11 @@
     [
       'path' => '/Logud',
       'view' => 'General'.DS.'Logout.view.php'
+    ],
+    [
+      'path' => '/Admin',
+      'view' => 'Admin'.DS.'Dashboard.view.php',
+      'layout' => 'Admin'
     ]
   );
 ?>
