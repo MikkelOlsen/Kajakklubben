@@ -403,7 +403,39 @@ body {
 
 
 
+/*=============================================
+=                   Boats                     =
+=============================================*/
 
+.boats > .boats-table {
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.boats-table th:first-of-type {
+    width: 400px;
+}
+
+.boats-table .boats-category {
+    font-weight: bold;
+}
+
+.boats-table td {
+    padding-top: 15px;
+    text-align: left;
+}
+
+
+.boats-table-image {
+    width: 150px;
+    padding-right: 20px;
+    visibility: hidden;
+}
+
+.boats-table img {
+    width: 140px;
+}
 
 
 
@@ -504,5 +536,9 @@ body {
 
     .home {
         grid-template-columns: 2fr 1fr;
+    }
+
+    .boats-table th:first-of-type {
+        width: 270px;
     }
 }

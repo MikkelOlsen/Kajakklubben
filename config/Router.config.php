@@ -1,6 +1,6 @@
 <?php
   Router::SetViewFoler(__ROOT__ . DS . 'view' . DS);
-  Router::SetDefaultRoute('/Home');
+  Router::SetDefaultRoute('/Om-Klubben');
   CONST ROUTES = array(
     [
       'path' => '/Om-Klubben',
@@ -19,6 +19,10 @@
       'path' => '/Galleri',
       'view' => 'Gallery.view.php',
       'params' => ['album', 'page']
+    ],
+    [
+      'path' => '/Baadpark',
+      'view' => 'Boats.view.php'
     ]
   );
 ?>

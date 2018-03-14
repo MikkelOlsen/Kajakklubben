@@ -130,7 +130,7 @@ class Router extends \PDO
 
     if($match == false)  
     {
-      if(!empty(self::$DefaultRoute) && self::$REQ_ROUTE === '/') 
+      if(!empty(self::$DefaultRoute)) 
       {
         foreach(self::$Routes as $route) 
         {
