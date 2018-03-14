@@ -449,6 +449,7 @@ body {
 
 .member > .member-info {
     margin-bottom: 30px;
+    padding: 5px;
 }
 
 .member > .member-info a {
@@ -456,6 +457,7 @@ body {
 }
 
 .member > .member-prices {
+    padding: 5px;
     display: grid;
     grid-template-columns: 3fr 1fr;
 }
@@ -463,6 +465,39 @@ body {
 .member > .member-prices > p:nth-child(even) {
     justify-self: end;
 }
+
+
+
+/*=============================================
+=                Profile page                 =
+=============================================*/
+
+.profile {
+    width: 50%;
+}
+
+.profile > img {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 150px;
+}
+
+.profile > .profile-information {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profile > .profile-information p {
+    padding-bottom: 5px;
+}
+
+.profile > .profile-information > p:nth-child(odd) {
+    font-weight: bold;
+}
+
+
+
 
 
 
@@ -578,6 +613,14 @@ body {
         content: attr(data-column) '\a';
         white-space: pre-wrap;
         font-weight: bold;
+    }
+
+    .profile > .profile-information {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile > .profile-information p:nth-child(even) {
+        padding-bottom: 15px;
     }
 
 }
