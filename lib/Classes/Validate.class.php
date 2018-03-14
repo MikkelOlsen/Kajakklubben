@@ -25,7 +25,7 @@ class Validate{
      * @param string $date
      * @return bool
      */
-    public static function birthdate(string $date) : bool
+    public static function date(string $date) : bool
     {
         return
         (

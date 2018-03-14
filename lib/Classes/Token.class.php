@@ -1,7 +1,7 @@
 <?php
 
 
-class Token 
+class Token
 {
 
 
@@ -34,10 +34,10 @@ class Token
      * @param int $maxAge (default = 300)
      * @return bool
      */
-    public static function validateToken(string $tokenName = 'default', string $tokenvalue, int $maxAge = 300) : bool
+    public static function validateToken( string $tokenvalue, string $tokenName = 'default', int $maxAge = 300) : bool
     {
-        $this->maxAge = $maxAge;
-        if($tokenvalue != $_SESSION['token'][$tokenName] || ((time() - (int)$_SESSION['tokenAge'][$tokenName]) > (int)$this->maxAge)){
+        self::$maxAge = $maxAge;
+        if($tokenvalue != $_SESSION['token'][$tokenName] || ((time() - (int)$_SESSION['tokenAge'][$tokenName]) > (int)self::$maxAge)){
             return false;
         }else{
             unset($_SESSION['token'][$tokenName], $_SESSION['tokenAge'][$tokenName]);
@@ -51,7 +51,7 @@ class Token
      */
     public static function createTokenInput(string $tokenName = 'default') : string
     {
-        $this->generateToken($tokenName);
+        self::generateToken($tokenName);
         return '<input type="hidden" name="_once_' . $tokenName . '" value="' . $_SESSION['token'][$tokenName] . '">';
     }
 }

@@ -1,0 +1,1 @@
+<a href="<?= Router::$BASE . 'Admin/News/Create' ?>" class="button">Opret Nyhed</a>

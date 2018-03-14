@@ -8,6 +8,7 @@ class Router extends \PDO
   public static       $Params = [],
                       $BASE   = null,
                       $View   = null,
+                      $Title  = null,
                       $Layout = null;
 
   private static      $RouteIndex   = null,
@@ -115,6 +116,10 @@ class Router extends \PDO
         if(array_key_exists('layout', $singleRoute) && !empty($singleRoute['layout'])) 
         {
           self::$Layout = $singleRoute['layout'];
+        }
+        if(array_key_exists('title', $singleRoute) && !empty($singleRoute['title'])) 
+        {
+          self::$Title = $singleRoute['title'];
         }
         if(array_key_exists('params', $singleRoute) && sizeof($singleRoute['params']) > 0)
         {

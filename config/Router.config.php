@@ -48,7 +48,20 @@
     [
       'path' => '/Admin',
       'view' => 'Admin'.DS.'Dashboard.view.php',
-      'layout' => 'Admin'
+      'layout' => 'Admin',
+      'title' => 'Dashboard'
+    ],
+    [
+      'path' => '/Admin/News',
+      'view' => 'Admin'.DS.'News'.DS.'News.view.php',
+      'layout' => 'Admin',
+      'title' => 'Nyheder'
+    ],
+    [
+      'path' => '/Admin/News/Create',
+      'view' => 'Admin'.DS.'News'.DS.'Create.view.php',
+      'layout' => 'Admin',
+      'title' => 'Opret Nyhed'
     ]
   );
 ?>

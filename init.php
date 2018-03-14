@@ -8,26 +8,20 @@
 	define('__ROOT__', __DIR__);
 	define('DS', DIRECTORY_SEPARATOR);
 	define('_CLASSES_', __DIR__.'/lib/Classes');
-	define('_CLASSDIR_', glob(_CLASSES_ . '/*' , GLOB_ONLYDIR));
 
 	session_start();
 
-	function ClassLoader(string $className) 
-	{
+	spl_autoload_register(function ($className){
 		$className = str_replace('\\', '/', $className);
-		if(file_exists($className)){
-			require_once($className);
+		if(file_exists(__DIR__ . DS  . 'lib' . DS . 'Classes' . DS . $className . '.class.php')){
+			require_once __DIR__  . DS . 'lib' . DS . 'Classes' . DS . $className . '.class.php';
 		} else {
-			echo 'ERROR:'. $className;
+			throw new Exception('ERROR: '. __DIR__ . DS . 'lib' . DS . 'Classes' . DS .  $className . '.class.php');
 		}
-	}
-
-	foreach(_CLASSDIR_ as $direc)
-	{
-		foreach(glob($direc.'/*.class.php') as $file) {
-			ClassLoader($file);
-		}
-	}
+	});
+	
+	$GET  = Filter::CheckMethod('GET')  ? Filter::SanitizeArray(INPUT_GET)  : null;
+    $POST = Filter::CheckMethod('POST') ? Filter::SanitizeArray(INPUT_POST) : null;
 
 	foreach(Config::LocateFiles(__ROOT__ . DS . 'config' . DS) as $configFile)
     {

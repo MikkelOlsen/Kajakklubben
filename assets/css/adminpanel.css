@@ -103,6 +103,11 @@
     display: grid;
   }
 
+  .mdl-layout__header-row {
+    color: #878787;
+    font-size: 20px;
+  }
+
   @media screen and (max-width: 1040px) {
     .demo-layout {
       grid-template-areas: "nav header"
