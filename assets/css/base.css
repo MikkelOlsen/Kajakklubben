@@ -30,7 +30,7 @@
     color:white; 
     font-size: 40px; 
 }
-.footer { grid-area: footer; }
+.footer { grid-area: footer; font-family: 'Bitter', serif; }
 .main { grid-area: main; }
 
 body {
@@ -439,6 +439,33 @@ body {
 
 
 
+/*=============================================
+=               Become a member               =
+=============================================*/
+
+.member p {
+    padding-top: 10px;
+}
+
+.member > .member-info {
+    margin-bottom: 30px;
+}
+
+.member > .member-info a {
+    color: #87ceeb;
+}
+
+.member > .member-prices {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.member > .member-prices > p:nth-child(even) {
+    justify-self: end;
+}
+
+
+
 
 
 /*=============================================
@@ -453,9 +480,6 @@ body {
     justify-items: center;
     align-items: center;
 }
-
-
-
 
 
 

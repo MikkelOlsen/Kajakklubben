@@ -4,25 +4,45 @@
   CONST ROUTES = array(
     [
       'path' => '/Om-Klubben',
-      'view' => 'Home.view.php'
+      'view' => 'Frontend'.DS.'Home.view.php'
     ],
     [
       'path' => '/Nyheder',
-      'view' => 'News.view.php',
+      'view' => 'Frontend'.DS.'News.view.php',
       'params' => ['page']
     ],
     [
       'path' => '/Arrangementer',
-      'view' => 'Events.view.php'
+      'view' => 'Frontend'.DS.'Events.view.php'
     ],
     [
       'path' => '/Galleri',
-      'view' => 'Gallery.view.php',
+      'view' => 'Frontend'.DS.'Gallery.view.php',
       'params' => ['album', 'page']
     ],
     [
       'path' => '/Baadpark',
-      'view' => 'Boats.view.php'
+      'view' => 'Frontend'.DS.'Boats.view.php'
+    ],
+    [
+      'path' => '/Bliv-Medlem',
+      'view' => 'Frontend'.DS.'Member.view.php'
+    ],
+    [
+      'path' => '/Min-Side',
+      'view' => 'Frontend'.DS.'Profile.view.php'
+    ],
+    [
+      'path' => '/Kontakt',
+      'view' => 'Frontend'.DS.'Contact.view.php'
+    ],
+    [
+      'path' => '/Logind',
+      'view' => 'General'.DS.'Login.view.php'
+    ],
+    [
+      'path' => '/Logud',
+      'view' => 'General'.DS.'Logout.view.php'
     ]
   );
 ?>
