@@ -42,12 +42,14 @@ body {
 	grid-template-rows: 400px 
 						1fr
 						30px;
-	min-height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .main-content {
     padding: 10px;
     font-family: 'Bitter', serif;
+    position: relative;
 }
 
 .main-content h2, .main-content h3 {
@@ -495,6 +497,64 @@ body {
 .profile > .profile-information > p:nth-child(odd) {
     font-weight: bold;
 }
+
+
+
+/*=============================================
+=                  Contact                    =
+=============================================*/
+
+.contact {
+    display: grid;
+}
+
+.contact-form {
+    justify-self: center;
+    width: 80%;
+    padding: 10px;
+    padding-top: 20px;
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+.contact-form h2 {
+    margin-bottom: 20px;
+}
+
+.contact-form form {
+    margin-top: 25px;
+    width: 50%;
+    justify-self: center;
+}
+
+.contact-form form input, .contact-form form textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border: none;
+    font-family: 'Bitter', serif;
+    font-size: 13px;
+}
+
+.contact-form form input[type=submit] {
+    background-color: #c0c0c0;
+    padding: 5px;
+}
+
+.google-map {
+    height: 400px;
+    background-color: grey;
+    margin-bottom: -10px;
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+
+
 
 
 
