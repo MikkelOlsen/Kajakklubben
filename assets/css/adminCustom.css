@@ -36,15 +36,14 @@ div.error {
 
 .create-news form input {
     padding: 15px;
-    color: black;
     background-color: transparent;
-    border: 1px solid #6b6b6b;
+    border: 1px solid transparent;
     transition-duration: 0.5s;
+    margin-bottom: 10px;
 }
 
 .create-news form input:focus {
-    color: white;
-    background-color: #3f3f3f; 
+    border-bottom: 1px solid black;
     transition-duration: 0.5s;
 }
 
@@ -54,6 +53,7 @@ div.error {
 }
 
 .ck-editor {
+    margin-bottom: 10px !important;
     border: 1px solid #6b6b6b !important;
 }
 
@@ -65,9 +65,33 @@ div.error {
 }
 
 .ck-focused {
-    background-color: #3f3f3f;
     border: 1px solid #6b6b6b !important;
     transition-duration: 0.5s;
-    color: white !important;
 }
 
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    color: black;
+    padding: 5px;
+    transition-duration: 0.2s;
+    background-color: lightgrey;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    transition-duration: 0.2s;
+    background-color: rgb(187, 186, 186)
+}

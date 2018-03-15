@@ -75,6 +75,7 @@ body {
     text-decoration: none;
     color: black;
     font-family: 'Bitter', serif;
+    border-bottom: 2px solid transparent;
 }
 
 .main > .navbar-mobile {
@@ -123,6 +124,11 @@ body {
 .dropdown a:hover {background-color: #ddd}
 
 .show {display:block !important;}
+
+.main > .navbar > .active {
+    border-bottom: 2px solid #87ceeb;
+    box-sizing: border-box;
+}
 
 
 
@@ -262,9 +268,13 @@ body {
 
 .news .pagination {
     display: grid;
-    justify-self: end;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
     grid-column: 1/4;
     grid-gap: 5px;
+}
+
+.news .pagination a:last-of-type {
+    justify-self: end;
 }
 
 .news .pagination a {

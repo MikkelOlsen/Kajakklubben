@@ -44,7 +44,7 @@
         <?= @$error['startDate'] ?>
         <input name="endDate" class="datePicker" type="text" placeholder="Nyheds Slut dato" value="<?= $endDate ?>">
         <?= @$error['endDate'] ?>
-        <textarea name="newsMessage" id="editor" placeholder="Nyheds Besked"><?= $CurrentNews->newsContent ?></textarea>
+        <textarea name="newsMessage" class="editor" placeholder="Nyheds Besked"><?= $CurrentNews->newsContent ?></textarea>
         <?= @$error['content'] ?>
         <input name="newsSubmit" type="submit" value="Opdater">
         <?= @$status ?>

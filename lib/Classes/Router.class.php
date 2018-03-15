@@ -15,7 +15,8 @@ class Router extends \PDO
                       $Routes       = null,
                       $REQ_ROUTE    = null,
                       $DefaultRoute = null,
-                      $ViewFolder   = null;
+                      $ViewFolder   = null,
+                      $currentRoute = null;
 
   public static function ValidateRoutes(array $routes, array $keys) : bool
   {
@@ -154,11 +155,17 @@ class Router extends \PDO
           }
         }
       }
+    } else if($match == true)
+    {
+      self::$currentRoute = self::$Routes[self::$RouteIndex]['path'];
     } 
   }
 }
 
-  
+public static function IsActive(string $route, string $activeCLass) : string
+{
+    return strtolower($route) === strtolower(self::$currentRoute) ? $activeCLass : '';
+} 
 
 }
 

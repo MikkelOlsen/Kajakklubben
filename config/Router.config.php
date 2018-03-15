@@ -74,6 +74,18 @@
       'layout' => 'Admin',
       'title' => 'Rediger Nyhed',
       'params' => ['ID']
+    ],
+    [
+      'path' => '/Admin/Events',
+      'view' => 'Admin'.DS.'Events'.DS.'Event.view.php',
+      'layout' => 'Admin',
+      'title' => 'Arrangementer'
+    ],
+    [
+      'path' => '/Admin/Events/Create',
+      'view' => 'Admin'.DS.'Events'.DS.'Create.view.php',
+      'layout' => 'Admin',
+      'title' => 'Opret Arrangement'
     ]
   );
 ?>
