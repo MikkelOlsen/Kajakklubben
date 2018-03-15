@@ -1,13 +1,16 @@
 <?php
 
-class News
+class News extends Database
 {
+
+    public static $news = null;
+
 
     public static function InsertNews(array $DATA)
     {
         try 
         {
-            (new Database)->query("INSERT INTO news (newsTitle, newsContent, newsStartDate, newsEndDate) VALUES (:TITLE, :CONTENT, STR_TO_DATE(:START, '%m/%d/%Y'), STR_TO_DATE(:END, '%m/%d/%Y'))", 
+            (new self)->query("INSERT INTO news (newsTitle, newsContent, newsStartDate, newsEndDate) VALUES (:TITLE, :CONTENT, STR_TO_DATE(:START, '%m/%d/%Y'), STR_TO_DATE(:END, '%m/%d/%Y'))", 
             [
                 ':TITLE' => $DATA['title'],
                 ':CONTENT' => $DATA['content'],
@@ -19,5 +22,10 @@ class News
         {
             return false;
         }
+    }
+
+    public static function GetAllNews()
+    {
+        self::$news = (new self)->query("SELECT * FROM news")->fetchAll();
     }
 }
