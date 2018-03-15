@@ -1,4 +1,5 @@
 <?php
+    setlocale(LC_ALL, array('da_DA.UTF-8','da_DA@euro','da_DA','danish'));
 
 	ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);

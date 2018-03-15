@@ -260,6 +260,18 @@ body {
     grid-template-columns: repeat(5, 1fr);
 }
 
+.news .pagination {
+    display: grid;
+    justify-self: end;
+    grid-column: 1/4;
+    grid-gap: 5px;
+}
+
+.news .pagination a {
+    color: red !important;
+}
+
+
 .news > .news-stories > .news-story {
     display: grid;
     grid-column: 1/4;

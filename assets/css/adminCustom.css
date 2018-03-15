@@ -15,6 +15,10 @@ div.error {
     background-color: red;
 }
 
+.delete {
+    color: red !important;
+}
+
 
 /* News styling */
 
@@ -57,12 +61,13 @@ div.error {
     min-height: 200px;
     border: 1px solid #6b6b6b;
     transition-duration: 0.5s;
-
+    color: black !important;
 }
 
 .ck-focused {
     background-color: #3f3f3f;
     border: 1px solid #6b6b6b !important;
     transition-duration: 0.5s;
+    color: white !important;
 }
 

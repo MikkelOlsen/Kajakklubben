@@ -10,7 +10,7 @@
     [
       'path' => '/Nyheder',
       'view' => 'Frontend'.DS.'News.view.php',
-      'params' => ['page']
+      'params' => ['PAGE']
     ],
     [
       'path' => '/Arrangementer',
@@ -62,6 +62,18 @@
       'view' => 'Admin'.DS.'News'.DS.'Create.view.php',
       'layout' => 'Admin',
       'title' => 'Opret Nyhed'
+    ],
+    [
+      'path' => '/Admin/News/Delete',
+      'view' => 'Admin'.DS.'News'.DS.'Delete.view.php',
+      'params' => ['ID']
+    ],
+    [
+      'path' => '/Admin/News/Edit',
+      'view' => 'Admin'.DS.'News'.DS.'Edit.view.php',
+      'layout' => 'Admin',
+      'title' => 'Rediger Nyhed',
+      'params' => ['ID']
     ]
   );
 ?>
