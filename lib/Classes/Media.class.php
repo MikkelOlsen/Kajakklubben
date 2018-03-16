@@ -9,6 +9,7 @@ class Media extends Database
             if(!file_exists($options['path'])) {
                 mkdir($options['path'], 0777, true);
             }
+            $err = [];
             $uniqueName = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
             foreach($options['sizes'] as $size) {
             $validExts = $options['validExts'];
@@ -84,11 +85,12 @@ class Media extends Database
                     break;
                 }
             } else {
-                return false;
-            } 
+                $err['err'] = '<b style="color:black;">'.$files['name'].'</b> Filen er ikke gyldig da <b style="color:black;">.'.$ext.'</b> ikke er en gyldig fil format.';
+            }
         }
-        
-            
+            if(sizeof($err) > 0) {
+                return $err;
+            }
 
                 $returnArray = array(
                     'filePath' => $options['path'],
@@ -139,6 +141,8 @@ class Media extends Database
     public static function UpdateImg(array $files, array $options = [])
     {
            $infoArray = self::ImageHandler($files, $options);
+           if(array_key_exists('filePath', $infoArray)) 
+           {
            try {
             self::UnlinkImage($options['mediaId']);
             (new self)->query("UPDATE `media` SET `filepath`=:PATH, `filename`=:NAME, `mime`=:MIME WHERE mediaId = :ID", 
@@ -152,6 +156,9 @@ class Media extends Database
            } catch(PDOExcetption $e) {
                return false;
            }
+        } else {
+            return $infoArray;
+        }
            return false;
     }
 

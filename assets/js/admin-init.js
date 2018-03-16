@@ -32,13 +32,3 @@ Array.prototype.forEach.call( inputs, function( input )
 });
 
 
-$('.delLink').click(function(event){
-	console.log('test');
-	event.preventDefault();
-	$.ajax({
-		url: $(this).attr('href'),
-		success: {
-			alert: 'Success!'
-		}
-	});
-});

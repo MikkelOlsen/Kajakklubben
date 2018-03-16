@@ -126,7 +126,7 @@
     [
       'path' => '/Admin/Gallery/Delete',
       'view' => 'Admin'.DS.'Gallery'.DS.'Delete.view.php',
-      'params' => ['ID']
+      'params' => ['GalleryID', 'ID']
     ]
   );
 ?>

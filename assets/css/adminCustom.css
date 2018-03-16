@@ -146,3 +146,7 @@ div.error {
     1px 1px 0 #000; 
     background-color: white;
 }
+
+.gallery-edit > .form > .create-news > form{
+    width: 60%;
+}

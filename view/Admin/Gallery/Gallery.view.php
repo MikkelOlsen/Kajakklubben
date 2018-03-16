@@ -3,8 +3,7 @@
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric">Galleri for</th>
-      <th>Arrangementets dato</th>
+      <th class="mdl-data-table__cell--non-numeric">Album Navn</th>
       <th></th>
       <th></th>
     </tr>
@@ -12,12 +11,10 @@
   <tbody>
       <?php
         foreach(Gallery::GetAllGalleries() as $gallery) {
-            $startDate = ucwords(strftime('%d. %B - %Y', strtotime($gallery->eventStartDate)));
             echo '<tr>';
-            echo '<td class="mdl-data-table__cell--non-numeric">'.$gallery->eventTitle.'</td>';
-            echo '<td>'.$startDate.'</td>';
-            echo '<td><a href="'.Router::$BASE.'Admin/Gallery/Edit/'.$gallery->eventsId.'"><i class="material-icons">mode_edit</i></td>';
-            echo '<td><a href="'.Router::$BASE.'Admin/Gallery/Delete/'.$gallery->eventsId.'" class="delete"><i class="material-icons">delete</i></td>';
+            echo '<td class="mdl-data-table__cell--non-numeric">'.$gallery->albumName.'</td>';
+            echo '<td><a href="'.Router::$BASE.'Admin/Gallery/Edit/'.$gallery->albumId.'"><i class="material-icons">mode_edit</i></td>';
+            echo '<td><a href="'.Router::$BASE.'Admin/Gallery/Delete/'.$gallery->albumId.'" class="delete"><i class="material-icons">delete</i></td>';
             echo '</tr>';
         }
       ?>

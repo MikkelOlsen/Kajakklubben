@@ -1,4 +1,8 @@
 <?php
+
+    if(Router::GetParamByName('ID') == NULL) {
+        Router::Redirect('/Admin/News');
+    }
     $CurrentNews = News::CurrentNews(Router::GetParamByName('ID'));
     $startDate = ucwords(strftime('%m/%d/%Y', strtotime($CurrentNews->newsStartDate)));
     $endDate = ucwords(strftime('%m/%d/%Y', strtotime($CurrentNews->newsEndDate)));

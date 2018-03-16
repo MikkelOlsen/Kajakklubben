@@ -72,9 +72,9 @@ class Events extends Database
     {
         return (new self)->query("SELECT events.eventTitle, events.eventsId
                                 FROM events
-                                LEFT JOIN gallery
-                                ON gallery.fkGalleryEventId = events.eventsId
-                                WHERE events.eventsId NOT IN (SELECT fkGalleryEventId from gallery)
+                                LEFT JOIN albums
+                                ON albums.albumEventId = events.eventsId
+                                WHERE events.eventsId NOT IN (SELECT albumEventId from albums)
                                 AND DATE(NOW()) >= `eventStartDate`
                                 ORDER BY `eventStartDate` DESC")->fetchAll();
     }

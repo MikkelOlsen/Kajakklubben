@@ -1,4 +1,7 @@
 <?php
+    if(Router::GetParamByName('ID') == NULL) {
+        Router::Redirect('/Admin/Events');
+    }
 
     $CurrentEvent = Events::CurrentEvent(Router::GetParamByName('ID'));
     $startDate = ucwords(strftime('%m/%d/%Y', strtotime($CurrentEvent->eventStartDate)));
