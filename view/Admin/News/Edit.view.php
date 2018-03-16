@@ -52,7 +52,7 @@
         <?= @$error['endDate'] ?>
         <textarea name="newsMessage" class="editor" placeholder="Nyheds Besked"><?= $CurrentNews->newsContent ?></textarea>
         <?= @$error['content'] ?>
-        <input name="newsSubmit" type="submit" value="Opdater">
+        <input name="newsSubmit" type="submit" value="Opdater Nyhed">
         <?= @$status ?>
     </form>
 

@@ -1,7 +1,6 @@
 ClassicEditor
                 .create( document.querySelector( '.editor' ) )
                 .catch( error => {
-                    console.error( error );
                 } );
 
 $( function() {
@@ -29,5 +28,17 @@ Array.prototype.forEach.call( inputs, function( input )
 			label.querySelector( 'span' ).innerHTML = fileName;
 		else
 			label.innerHTML = labelVal;
+	});
+});
+
+
+$('.delLink').click(function(event){
+	console.log('test');
+	event.preventDefault();
+	$.ajax({
+		url: $(this).attr('href'),
+		success: {
+			alert: 'Success!'
+		}
 	});
 });

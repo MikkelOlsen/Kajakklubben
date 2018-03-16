@@ -46,7 +46,7 @@ div.error {
     grid-template-columns: 1fr;
 }
 
-.create-news form input {
+.create-news form input, .create-news form select {
     padding: 15px;
     background-color: transparent;
     border: 1px solid transparent;
@@ -54,15 +54,29 @@ div.error {
     margin-bottom: 10px;
 }
 
-.create-news form input:focus {
+.create-news form input:focus, .create-news form select:focus {
     border-bottom: 1px solid black;
     transition-duration: 0.5s;
 }
 
 .create-news form input[type="submit"] {
+    padding: 10px;
     background-color: #3f3f3f;
     color: white;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
+
+.create-news form select {
+    padding: 0;
+}
+
+.create-news form option {
+    padding: 15px;
+}
+
 
 .ck-editor {
     margin-bottom: 10px !important;
@@ -103,3 +117,32 @@ div.error {
     transition-duration: 0.2s;
 }
 
+
+.gallery-edit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.gallery-edit .gallery .albums {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 20px;
+}
+
+.gallery-edit .album {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: red;
+    font-size: 15px;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+    background-color: white;
+}

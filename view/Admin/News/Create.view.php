@@ -44,7 +44,7 @@
         <?= @$error['endDate'] ?>
         <textarea name="newsMessage" class="editor">Nyheds Beskrivelse</textarea>
         <?= @$error['content'] ?>
-        <input name="newsSubmit" type="submit" value="Opret">
+        <input name="newsSubmit" type="submit" value="Opret Nyhed">
         <?= @$status ?>
     </form>
 

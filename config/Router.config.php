@@ -103,6 +103,30 @@
       'layout' => 'Admin',
       'title' => 'Rediger Arrangement',
       'params' => ['ID']
+    ],
+    [
+      'path' => '/Admin/Gallery',
+      'view' => 'Admin'.DS.'Gallery'.DS.'Gallery.view.php',
+      'layout' => 'Admin',
+      'title' => 'Galleri'
+    ],
+    [
+      'path' => '/Admin/Gallery/Create',
+      'view' => 'Admin'.DS.'Gallery'.DS.'Create.view.php',
+      'layout' => 'Admin',
+      'title' => 'Opret Galleri'
+    ],
+    [
+      'path' => '/Admin/Gallery/Edit',
+      'view' => 'Admin'.DS.'Gallery'.DS.'Edit.view.php',
+      'layout' => 'Admin',
+      'title' => 'Rediger Galleri',
+      'params' => ['ID']
+    ],
+    [
+      'path' => '/Admin/Gallery/Delete',
+      'view' => 'Admin'.DS.'Gallery'.DS.'Delete.view.php',
+      'params' => ['ID']
     ]
   );
 ?>

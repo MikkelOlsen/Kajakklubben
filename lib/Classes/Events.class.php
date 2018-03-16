@@ -67,4 +67,15 @@ class Events extends Database
                                   ON events.eventCover = media.mediaId
                                   WHERE DATE(NOW()) <= `eventStartDate` ORDER BY `eventStartDate` DESC")->fetchAll();
     }
+
+    public static function GetAllEventsByDateReverse() : array
+    {
+        return (new self)->query("SELECT events.eventTitle, events.eventsId
+                                FROM events
+                                LEFT JOIN gallery
+                                ON gallery.fkGalleryEventId = events.eventsId
+                                WHERE events.eventsId NOT IN (SELECT fkGalleryEventId from gallery)
+                                AND DATE(NOW()) >= `eventStartDate`
+                                ORDER BY `eventStartDate` DESC")->fetchAll();
+    }
 }

@@ -14,7 +14,7 @@
           <a class="mdl-navigation__link" href="<?= Router::$BASE . 'Admin/Dashboard' ?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Dashboard</a>
           <a class="mdl-navigation__link" href="<?= Router::$BASE . 'Admin/News' ?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Nyheder</a>
           <a class="mdl-navigation__link" href="<?= Router::$BASE . 'Admin/Events' ?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Arrangementer</a>
-          <a class="mdl-navigation__link" href="<?= Router::$BASE . 'Admin/Dashboard' ?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
+          <a class="mdl-navigation__link" href="<?= Router::$BASE . 'Admin/Gallery' ?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Galleri</a>
           <a class="mdl-navigation__link" href="<?= Router::$BASE . 'Admin/Dashboard' ?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
           <a class="mdl-navigation__link" href="<?= Router::$BASE . 'Admin/Dashboard' ?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
           <a class="mdl-navigation__link" href="<?= Router::$BASE . 'Admin/Dashboard' ?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>

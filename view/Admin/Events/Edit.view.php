@@ -74,7 +74,7 @@
         <input type="file" name="files" id="file" class="inputfile" />
         <label for="file" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span>Klik for at vælge arrangemenets billede.</span></label>
         <?= @$error['eventCover'] ?>
-        <input name="eventSubmit" type="submit" value="Opret">
+        <input name="eventSubmit" type="submit" value="Opdater Arrangement">
         <?= @$status ?>
     </form>
 

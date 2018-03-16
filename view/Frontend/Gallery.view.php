@@ -25,13 +25,8 @@
         foreach(Gallery::GetAllEventImages(Router::GetParamByName('album')) as $galleryImage)
         {
             echo '<div class="album">';
-            echo '<a href="#'.$currentAlbum->eventTitle . $galleryImage->galleryId .'">';
-            echo '<img src="../'.$galleryImage->filepath.'/222x171_'.$galleryImage->filename.'.'.$galleryImage->mime.'" alt="'.$currentAlbum->eventTitle.'">';
+            echo '<img data-jslghtbx-group="'.$currentAlbum->eventTitle.'" data-jslghtbx="../'.$galleryImage->filepath.'/900x600_'.$galleryImage->filename.'.'.$galleryImage->mime.'" src="../'.$galleryImage->filepath.'/222x171_'.$galleryImage->filename.'.'.$galleryImage->mime.'" alt="'.$currentAlbum->eventTitle.'">';
             echo '</a>';
-            echo '</div>';
-            echo '<div class="lightbox-target" id="'.$currentAlbum->eventTitle . $galleryImage->galleryId .'">';
-            echo '<img src="../'.$galleryImage->filepath.'/900x600_'.$galleryImage->filename.'.'.$galleryImage->mime.'" alt="'.$currentAlbum->eventTitle.'">';
-            echo '<a class="lightbox-close" href="#"></a>';
             echo '</div>';
         }
         echo '</div>';

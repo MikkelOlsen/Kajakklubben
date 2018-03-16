@@ -25,5 +25,10 @@
       </div>
   </footer>  
   </body>
-<script src="./assets/js/navigation.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/lightbox.js" type="text/javascript"></script>
+<script>
+var lightbox = new Lightbox();
+lightbox.load();
+</script> 
 </html>

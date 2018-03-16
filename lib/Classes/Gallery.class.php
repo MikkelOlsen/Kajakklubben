@@ -23,4 +23,30 @@ class Gallery extends Database
                                       ':ID' => $ID
                                   ])->fetchAll();
     }
+
+    public static function InsertGallery(string $MediaId, string $EventId) : bool
+    {
+        try 
+        {
+            (new self)->query("INSERT INTO gallery (fkGalleryEventId, fkGalleryMediaId) VALUES (:EVENTID, :MEDIAID)",
+                                [
+                                    ':EVENTID' => $EventId,
+                                    ':MEDIAID' => $MediaId
+                                ]);
+            return true;
+        } catch(PDOException $e)
+        {
+            return false;
+        }
+        return false;
+    }
+
+    public static function GetAllGalleries() : array
+    {
+        return (new self)->query("SELECT events.eventTitle, events.eventStartDate, events.eventsId
+                                    FROM events
+                                    INNER JOIN gallery
+                                    ON gallery.fkGalleryEventId = events.eventsId
+                                    GROUP BY events.eventsId")->fetchAll();
+    }
 }
