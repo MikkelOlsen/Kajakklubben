@@ -58,4 +58,12 @@ class Events extends Database
             return false;
         }
     }
+
+    public static function GetAllEventsByDate() : array
+    {
+        return (new self)->query("SELECT `eventsId`, `eventTitle`, `eventDescription`, `eventStartDate`, filename, filepath, mime FROM `events`
+                                  INNER JOIN media
+                                  ON events.eventCover = media.mediaId
+                                  WHERE DATE(NOW()) <= `eventStartDate` ORDER BY `eventStartDate` DESC")->fetchAll();
+    }
 }
