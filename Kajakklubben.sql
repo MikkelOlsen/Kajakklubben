@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2018 at 03:22 PM
+-- Generation Time: Mar 16, 2018 at 03:00 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -50,6 +50,13 @@ CREATE TABLE `events` (
   `eventCover` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`eventsId`, `eventTitle`, `eventStartDate`, `eventDescription`, `eventCover`) VALUES
+(25, 'Test', '2018-03-23', '&#60;p&#62;Arrangement Beskrivelse&#60;/p&#62;', 65);
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +80,13 @@ CREATE TABLE `gallery` (
   `fkGalleryEventId` int(11) NOT NULL,
   `fkGalleryMediaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`galleryId`, `fkGalleryEventId`, `fkGalleryMediaId`) VALUES
+(3, 25, 65);
 
 -- --------------------------------------------------------
 
@@ -113,6 +127,13 @@ CREATE TABLE `media` (
   `mime` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `media`
+--
+
+INSERT INTO `media` (`mediaId`, `filename`, `filepath`, `mime`) VALUES
+(65, 'a70e104895ff3239f21a37dad1e6dcb5', 'assets/images/events', 'jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -132,7 +153,6 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`newsId`, `newsTitle`, `newsContent`, `newsStartDate`, `newsEndDate`) VALUES
-(7, 'Test V1', '&#60;p&#62;Jeg tænker at nu tester vi lige, ja vi gør nemlig så. Hvem er du lige nu? er du ham eller hende? ork eller gigant? menneske eller gnom? tyk eller tynd?&#60;/p&#62;&#60;p&#62;&#38;nbsp;&#60;/p&#62;&#60;p&#62;&#38;nbsp;høj eller lav? bums eller rig? for ja vi tester tester tester oh yeah det gør vi!&#60;/p&#62;', '2018-03-08', '2018-03-23'),
 (9, 'Test', '&#60;p&#62;sdfsdfsdfsdf&#60;/p&#62;', '2018-03-15', '2018-03-17'),
 (10, 'Bums', '&#60;p&#62;sdfsfsdf&#60;/p&#62;', '2018-03-13', '2018-03-31'),
 (11, 'Yeah boi', '&#60;p&#62;sdfsdfsdfdsfs&#60;/p&#62;', '2018-03-22', '2018-03-27'),
@@ -354,7 +374,7 @@ ALTER TABLE `contacs`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `eventsId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `eventsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `eventsubscribers`
@@ -366,7 +386,7 @@ ALTER TABLE `eventsubscribers`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `galleryId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `galleryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kajaks`
@@ -384,7 +404,7 @@ ALTER TABLE `kajaktypes`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `mediaId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mediaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `news`
