@@ -47,7 +47,7 @@
                                   <div class="mdl-tooltip mdl-tooltip--large" data-mdl-for="successTooltip">Klik her for at komme tilbage til arrangementer.</div>';
 
                         $CurrentEvent = Events::CurrentEvent(Router::GetParamByName('ID'));
-
+                        $startDate = ucwords(strftime('%m/%d/%Y', strtotime($CurrentEvent->eventStartDate)));
                     } else 
                     {
                         $status = '<div class="error">Der skete desværre en fejl ved indsættelsen af dataen. Prøv igen.</div>';
