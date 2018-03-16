@@ -116,12 +116,12 @@ class Media extends Database
         return (new self)->query("SELECT mediaId FROM media WHERE filename = :FILENAME", [':FILENAME' => $infoArray['fileName']])->fetch();
     }
 
-    public static function unlinkImage($mediaId, $delete = false)
+    public static function UnlinkImage($mediaId, $delete = false)
     {
         try {
-            $infoArray = $this->db->single("SELECT * FROM media WHERE mediaId = :id", [':id' => $mediaId]);
+            $infoArray = (new self)->query("SELECT * FROM media WHERE mediaId = :id", [':id' => $mediaId])->fetch();
             if($delete == true) {
-                $this->db->query("DELETE FROM media WHERE mediaId = :id", [':id' => $mediaId]);
+                (new self)->query("DELETE FROM media WHERE mediaId = :id", [':id' => $mediaId]);
             }
             $files = glob($infoArray->filepath.'/*'.$infoArray->filename.'.'.$infoArray->mime);
             foreach($files as $file) {
@@ -136,11 +136,11 @@ class Media extends Database
         return false;
     }
 
-    public static function updateImg(array $files, array $options = [])
+    public static function PpdateImg(array $files, array $options = [])
     {
-       $infoArray = $this->imageHandler($files, $options);
+       $infoArray = self::imageHandler($files, $options);
 
-        //  if($this->unlinkImage($options['mediaId']) == true) {
+        if($this->unlinkImage($options['mediaId']) == true) {
            try {
             $this->db->query("UPDATE `media` SET `filepath`=:path, `filename`=:name, `mime`=:mime WHERE mediaId = :id", 
             [
@@ -154,6 +154,6 @@ class Media extends Database
                return false;
            }
            return false;
-    //    }
+       }
     }
 }

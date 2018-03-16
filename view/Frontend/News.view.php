@@ -10,12 +10,12 @@
     <div class="news-stories">
         <?php
             foreach($articles as $news) {
-                $desc = preg_replace('/\s+?(\S+)?$/', '', substr($news->newsContent, 0, 201));
+                $desc = preg_replace('/\s+?(\S+)?$/', ' ...', substr($news->newsContent, 0, 197));
                 echo '<div class="news-story">';
                 echo '<h3>'.$news->newsTitle.'</h3>';
                 echo '<p>'.ucwords(strftime('%d. %B - %Y', strtotime($news->newsStartDate))).'</p>';
                 echo htmlspecialchars_decode($desc).'</p>';
-                echo '<a href="'. Router::$BASE . 'Nyheder' .'">Læs mere...</a>';
+                echo '<a href="'. Router::$BASE . 'Nyheder/Laes-Mere/'. $news->newsId .'">Læs mere...</a>';
                 echo '</div>';
             }
             echo '<div class="pagination">';

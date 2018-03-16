@@ -1,9 +1,11 @@
 <?php
-    $CurrentNews = News::CurrentNews(Router::$Params['ID']);
+    $CurrentNews = News::CurrentNews(Router::GetParamByName('ID'));
     $startDate = ucwords(strftime('%m/%d/%Y', strtotime($CurrentNews->newsStartDate)));
     $endDate = ucwords(strftime('%m/%d/%Y', strtotime($CurrentNews->newsEndDate)));
     if(isset($POST['newsSubmit'])) 
     {
+        if(Token::validateToken($POST['_once_default']) == true) {
+
             if(isset($POST['startDate']) && isset($POST['endDate']) && isset($POST['newsMessage']) && isset($POST['newsTitle']))
             {
                 $error = [];
@@ -19,16 +21,20 @@
                 }
                 if(sizeof($error) == 0) 
                 {
-                    if(News::UpdateNews($DATA, Router::$Params['ID']) == true)
+                    if(News::UpdateNews($DATA, Router::GetParamByName('ID')) == true)
                     {
                         $status = '<div class="success">Nyheden er blevet opdateret.</div>';
-                        $CurrentNews = News::CurrentNews(Router::$Params['ID']);
+                        $CurrentNews = News::CurrentNews(Router::GetParamByName('ID'));
                     } else 
                     {
-                        $status = 'Der skete desværre en fejl ved indsættelsen af dataen. Prøv igen.';
+                        $status = '<div class="error">Der skete desværre en fejl ved indsættelsen af dataen. Prøv igen.</div>';
                     }
                 }
             }
+        } else 
+        {
+            $status = '<div class="error">Dataen gik desværre ikke igennem, prøv igen.</div>';
+        }
         }
 ?>
 

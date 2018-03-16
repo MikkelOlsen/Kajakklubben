@@ -13,6 +13,11 @@
       'params' => ['PAGE']
     ],
     [
+      'path' => '/Nyheder/Laes-Mere',
+      'view' => 'Frontend'.DS.'SingleNews.view.php',
+      'params' => ['ID']
+    ],
+    [
       'path' => '/Arrangementer',
       'view' => 'Frontend'.DS.'Events.view.php'
     ],
@@ -86,6 +91,18 @@
       'view' => 'Admin'.DS.'Events'.DS.'Create.view.php',
       'layout' => 'Admin',
       'title' => 'Opret Arrangement'
+    ],
+    [
+      'path' => '/Admin/Events/Delete',
+      'view' => 'Admin'.DS.'Events'.DS.'Delete.view.php',
+      'params' => ['ID']
+    ],
+    [
+      'path' => '/Admin/Events/Edit',
+      'view' => 'Admin'.DS.'Events'.DS.'Edit.view.php',
+      'layout' => 'Admin',
+      'title' => 'Rediger Arrangement',
+      'params' => ['ID']
     ]
   );
 ?>

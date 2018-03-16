@@ -19,10 +19,13 @@
                         $status = '<div class="success">Nyheden er blevet oprettet.</div>';
                     } else 
                     {
-                        $status = 'Der skete desværre en fejl ved indsættelsen af dataen. Prøv igen.';
+                        $status = '<div class="error">Der skete desværre en fejl ved indsættelsen af dataen. Prøv igen.</div>';
                     }
                 }
             }
+        } else 
+        {
+            $status = '<div class="error">Dataen gik desværre ikke igennem, prøv igen.</div>';
         }
     }
 ?>

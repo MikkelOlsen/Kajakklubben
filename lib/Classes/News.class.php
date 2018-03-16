@@ -33,7 +33,7 @@ class News extends Database
         (new self)->query("DELETE FROM news WHERE newsId = :ID", [':ID' => $ID]);
     }
 
-    public static function CurrentNews(string $ID) : array
+    public static function CurrentNews(string $ID) : object
     {
         return (new self)->query("SELECT * FROM news WHERE newsId = :ID", [':ID' => $ID])->fetch();
     }

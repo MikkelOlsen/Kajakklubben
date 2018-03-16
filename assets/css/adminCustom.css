@@ -8,11 +8,23 @@
 .success {
     padding: 15px;
     background-color: green;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 div.error {
     padding: 10px;
     background-color: red;
+    text-align: center;
+    color: white; 
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
 .delete {
@@ -83,15 +95,11 @@ div.error {
     font-size: 1em;
     font-weight: 700;
     color: black;
-    padding: 5px;
-    transition-duration: 0.2s;
-    background-color: lightgrey;
-    border: 1px solid black;
     margin-bottom: 10px;
 }
 
 .inputfile:focus + label,
 .inputfile + label:hover {
     transition-duration: 0.2s;
-    background-color: rgb(187, 186, 186)
 }
+
