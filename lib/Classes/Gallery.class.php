@@ -5,20 +5,18 @@ class Gallery extends Database
 
     public static function GetAllCoversByDate() : array
     {
-        return (new self)->query("SELECT `eventsId`, `eventTitle`, `eventStartDate`, filename, filepath, mime FROM `events`
+        return (new self)->query("SELECT `albumId`, `albumName`, filename, filepath, mime FROM `albums`
                                   INNER JOIN media
-                                  ON events.eventCover = media.mediaId
-                                  WHERE DATE(NOW()) >= `eventStartDate` ORDER BY `eventStartDate` DESC")->fetchAll();
+                                  ON albums.albumCoverId = media.mediaId")->fetchAll();
     }
 
-    public static function GetAllEventImages(string $ID) : array
+    public static function GetAllAlbumImages(string $ID) : array
     {
-        return (new self)->query("SELECT galleryId, filename, filepath, mime FROM gallery 
+        return (new self)->query("SELECT galleryId, filename, filepath, mime 
+                                  FROM gallery 
                                   INNER JOIN media 
                                   ON gallery.fkGalleryMediaId = media.mediaId
-                                  INNER JOIN album
-                                  ON gallery.fkGalleryAlbumId = albums.albumId
-                                  WHERE albums.albumId = :ID",
+                                  WHERE gallery.fkGalleryAlbumId = :ID",
                                   [
                                       ':ID' => $ID
                                   ])->fetchAll();
@@ -42,7 +40,7 @@ class Gallery extends Database
         return false;
     }
 
-    public static function GetAllGalleries() : array
+    public static function GetAllAlbums() : array
     {
         return (new self)->query("SELECT * FROM albums")->fetchAll();
     }
@@ -65,6 +63,33 @@ class Gallery extends Database
                                ':EVENTID' => $ID
                            ]);
         return (new self)->query("SELECT * FROM albums WHERE albumName = :NAME",[':NAME' => $DATA['albumName']])->fetch();
+    }
+
+    public static function CurrentAlbum(string $ID) : object
+    {
+        return (new self)->query("SELECT * FROM albums WHERE albumId = :ID", [':ID' => $ID])->fetch();
+    }
+
+    public static function UpdateAlbumImg($DATA, $ID = null) : bool
+    {
+        $coverId = (new self)->query("SELECT mediaId FROM `media` ORDER by mediaId DESC LIMIT 1 ")->fetch();
+        (new self)->query("UPDATE albums SET `albumName` = :NAME, `albumCoverId` = :COVERID, `albumEventId` = :EVENTID",
+                           [
+                               ':NAME' => $DATA['albumName'],
+                               ':COVERID' => $coverId->mediaId,
+                               ':EVENTID' => $ID
+                           ]);
+        return true;
+    }
+
+    public static function UpdateAlbum($DATA, $ID = null) : bool
+    {
+        (new self)->query("UPDATE albums SET `albumName` = :NAME, `albumEventId` = :EVENTID",
+                           [
+                               ':NAME' => $DATA['albumName'],
+                               ':EVENTID' => $ID
+                           ]);
+        return true;
     }
 
 }

@@ -2,16 +2,32 @@
     if(Router::GetParamByName('ID') == NULL) {
         Router::Redirect('/Admin/Gallery');
     }
-    // $currentAlbum = Events::CurrentEvent(Router::GetParamByName('ID'));
-    // $gallery = Gallery::GetAllEventImages(Router::GetParamByName('ID'));
-    // if(sizeof($gallery) == 0) 
-    //         {
-    //             Router::Redirect('/Admin/Gallery');
-    //         }
+    $currentAlbum = Gallery::CurrentAlbum(Router::GetParamByName('ID'));
+    $gallery = Gallery::GetAllAlbumImages(Router::GetParamByName('ID'));
 
     if(isset($POST['submit'])) {
-       if(!empty($_FILES['files']['name'][0])) {
-           $errArr = [];
+        $eventId = null;
+        $selectValid = false;
+        $error = [];
+        if(isset($POST['event']) && $POST['event'] !== 0) 
+        {
+            foreach($events as $singleEvent) {
+                if($POST['event'] == $singleEvent->eventsId )
+                {
+                    $selectValid = true;
+                    $eventId = $POST['event'];
+                    break;
+                }
+            }
+            if($selectValid == false)
+            {
+                $error['event'] = '<div class="error">Ugyldig begivenhed, genindlæs siden og prøv igen</div>';
+            }
+        } 
+        $DATA['albumName'] = Validate::stringBetween($POST['albumName'], 2, 45) ? $POST['albumName']  : $error['albumName'] = '<div class="error">Titlen må kun inholde bogstaver og tal. Samt være mellem 2 og 45 tegn.</div>';
+        $eventName = str_replace(' ', '_', $POST['albumName']);
+        $mediaId = [];
+        
             $options = array(
                 'validExts' => array(
                     'jpeg',
@@ -29,44 +45,63 @@
                         'width' => '900' 
                     )
                 ),
-                'path' => 'assets/images/gallery/'.$currentAlbum->eventTitle,
+                'path' => 'assets/images/gallery/'.$currentAlbum->albumName,
                 'create' => true,
                 'mediaId' => Router::GetParamByName('ID')
             );
-                $MultiArray = Media::MultiUploadArray($_FILES);
-                for($i=0;$i<count($MultiArray);$i++){
-                    $mediaId = Media::ImageHandler($MultiArray[$i], $options);
-                    if(array_key_exists('err', $mediaId)) {
-                        $errArr[$i] = $mediaId;
-                    }
-                    if(sizeof($errArr) == 0) {
-                        Gallery::InsertGallery($mediaId->mediaId, Router::GetParamByName('ID'));
-                    }
-                }
-                if(sizeof($errArr) > 0) {
-                    $status = '<div class="error">';
-                    foreach ($errArr as $error) 
+            if(sizeof($error) == 0)
+            {
+                if($_FILES['files']['size'][0] !== 0) 
+                {
+                    $MultiArray = Media::MultiUploadArray($_FILES['files']);
+                    for($i=0;$i<count($MultiArray);$i++)
                     {
-                        $status .= $error['err'].'<br>';
+                        $mediaId[$i] = Media::ImageHandler($MultiArray[$i], $options);
+                        if(array_key_exists('err', $mediaId[$i])) 
+                        {
+                            $error[$i] = $mediaId[$i];
+                        }
+                        
                     }
-                    $status .= '</div>';
+                    if(sizeof($error) == 0) 
+                    {
+                        if($POST['albumName'] !== $currentAlbum->albumName || isset($POST['event']) && $POST['event'] !== 0 && $POST['event'] !== $currentAlbu->albumEventId) 
+                        {
+                            Gallery::UpdateAlbumImg($POST, $eventId);
+                        }
+                        for($x=0;$x<count($mediaId);$x++){
+                            Gallery::InsertGallery($mediaId[$x]->mediaId, Router::GetParamByName('ID'));
+                        }
+                        $gallery = Gallery::GetAllAlbumImages(Router::GetParamByName('ID'));
+                        $currentAlbum = Gallery::CurrentAlbum(Router::GetParamByName('ID'));
+                    }
+                    if(sizeof($error) > 0) 
+                    {
+                        $status = '<div class="error">';
+                        foreach ($error as $error) 
+                        {
+                            $status .= $error['err'].'<br>';
+                        }
+                        $status .= '</div>';
+                    } 
                 } else {
-                    $gallery = Gallery::GetAllEventImages(Router::GetParamByName('ID'));
+                    Gallery::UpdateAlbum($POST, $eventId);
+                    $currentAlbum = Gallery::CurrentAlbum(Router::GetParamByName('ID'));
                 }
-       } else {
-        $status = '<div class="error">Du skal vælge nogle billeder før du kan uploade dem.</div>';
-    }
-    }
+        }
+       }
 ?>
 
 
 <div class="gallery-edit">
     <div class="form">
-    <h2>Rediger Gallariet - <i><?= $currentAlbum->eventTitle ?></i> </h2>
+    <h2>Rediger Albummet - <i><?= $currentAlbum->albumName ?></i> </h2>
 
         <div class="create-news">
             <form method="post" enctype="multipart/form-data">
-            
+                <input type="text" name="albumName" placeholder="Albummets Navn" value="<?= $currentAlbum->albumName ?>">
+                <?= @$error['albumTitle'] ?>
+
                 <input type="file" name="files[]" id="file" class="inputfile" multiple="multiple"/>
                 <label for="file" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span>Klik for at tilføje billeder til galleriet.</span></label>
 
@@ -83,8 +118,8 @@
             foreach($gallery as $galleryImage)
             {
                 echo '<div class="album">';
-                echo '<img src="'. Router::$BASE . $galleryImage->filepath.'/222x171_'.$galleryImage->filename.'.'.$galleryImage->mime.'" alt="'.$currentAlbum->eventTitle.'">';
-                echo '<a class="delLink" href="'. Router::$BASE . 'Admin/Gallery/Delete/' . $currentAlbum->eventsId . '/' . $galleryImage->galleryId.'"><i class="material-icons top-right">clear</i></a>';
+                echo '<img src="'. Router::$BASE . $galleryImage->filepath.'/222x171_'.$galleryImage->filename.'.'.$galleryImage->mime.'" alt="'.$currentAlbum->albumName.'">';
+                echo '<a class="delLink" href="'. Router::$BASE . 'Admin/Gallery/Delete/' . $currentAlbum->albumId . '/' . $galleryImage->galleryId.'"><i class="material-icons top-right">clear</i></a>';
                 echo '</a>';
                 echo '</div>';
             }

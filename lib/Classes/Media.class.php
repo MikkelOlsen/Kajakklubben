@@ -164,15 +164,15 @@ class Media extends Database
 
     public static function MultiUploadArray($FILES) : array
     {
-        $files = count($FILES['files']['name']);
+        $files = count($FILES['name']);
         $FileArray = [];
         for($i = 0; $i<$files; $i++) {
                 $FileArray[$i] = array(
-                    'name' => $FILES['files']['name'][$i],
-                    'type' => $FILES['files']['type'][$i],
-                    'tmp_name' => $FILES['files']['tmp_name'][$i],
-                    'error' => $FILES['files']['error'][$i],
-                    'size' => $FILES['files']['size'][$i]
+                    'name' => $FILES['name'][$i],
+                    'type' => $FILES['type'][$i],
+                    'tmp_name' => $FILES['tmp_name'][$i],
+                    'error' => $FILES['error'][$i],
+                    'size' => $FILES['size'][$i]
                 );
         }
 

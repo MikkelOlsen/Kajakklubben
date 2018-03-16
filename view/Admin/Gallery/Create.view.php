@@ -1,8 +1,9 @@
 <?php 
 $events = Events::GetAllEventsByDateReverse();
-    if(isset($POST['submit'])) {
-        $selectValid = false;
+if(isset($POST['submit'])) {
         $eventId = null;
+        $selectValid = false;
+        $error = [];
         if(isset($POST['event']) && $POST['event'] !== 0) 
         {
             foreach($events as $singleEvent) {
@@ -13,12 +14,14 @@ $events = Events::GetAllEventsByDateReverse();
                     break;
                 }
             }
-        } else {
-            $selectValid = true;
-        }
-
+            if($selectValid == false)
+            {
+                $error['event'] = '<div class="error">Ugyldig begivenhed, genindlæs siden og prøv igen</div>';
+            }
+        } 
+        $DATA['albumName'] = Validate::stringBetween($POST['albumName'], 2, 45) ? $POST['albumName']  : $error['albumName'] = '<div class="error">Titlen må kun inholde bogstaver og tal. Samt være mellem 2 og 45 tegn.</div>';
+        $DATA['files'] = $_FILES['files']['size'][0] !== 0 ? $_FILES['files'] : $error['image'] = '<div class="error">Du skal vælge minimum ét billede.</div>';
         $eventName = str_replace(' ', '_', $POST['albumName']);
-        $errArr = [];
         $mediaId = [];
         $options = array(
             'validExts' => array(
@@ -40,31 +43,33 @@ $events = Events::GetAllEventsByDateReverse();
             'path' => 'assets/images/gallery/'.$eventName,
             'create' => true
         );
-        if($selectValid) {
-            $MultiArray = Media::MultiUploadArray($_FILES);
+        if(sizeof($error) == 0) {
+            $MultiArray = Media::MultiUploadArray($DATA['files']);
             for($i=0;$i<count($MultiArray);$i++){
-                $mediaId = Media::ImageHandler($MultiArray[$i], $options);
-                if(array_key_exists('err', $mediaId)) {
-                    $errArr[$i] = $mediaId;
+                $mediaId[$i] = Media::ImageHandler($MultiArray[$i], $options);
+                if(array_key_exists('err', $mediaId[$i])) {
+                    $error[$i] = $mediaId[$i];
                 }
                 
             }
-            if(sizeof($errArr) == 0) {
-                $albumId = Gallery::CreateAlbum($POST, $eventId);
-                for($x=0;$x<count($MultiArray);$x++){
-                    Gallery::InsertGallery($mediaId->mediaId, $albumId->albumId);
+            if(sizeof($error) == 0) {
+                $albumId = Gallery::CreateAlbum($DATA, $eventId);
+                for($x=0;$x<count($mediaId);$x++){
+                    Gallery::InsertGallery($mediaId[$x]->mediaId, $albumId->albumId);
                 }
+                unset($POST);
+                $status = '<a id="successTooltip" href="'.Router::$BASE.'Admin/Gallery" class="success">Success</a>
+                        <div class="mdl-tooltip mdl-tooltip--large" data-mdl-for="successTooltip">Klik her for at komme tilbage til gallerier.</div>';
+
             }
-            if(sizeof($errArr) > 0) {
-                $status = '<div class="error">';
-                foreach ($errArr as $error) 
+            if(sizeof($error) > 0) {
+                $error['image'] = '<div class="error">';
+                foreach ($error as $imgError) 
                 {
-                    $status .= $error['err'].'<br>';
+                    $error['image'] .= $imgError['err'].'<br>';
                 }
-                $status .= '</div>';
+                $error['image'] .= '</div>';
             }
-        } else {
-            $status = '<div class="error">Der skete en fejl i dit valg af begivenhed, genindlæs siden og prøv igen.</div>';
         }
 
     }
@@ -74,8 +79,8 @@ $events = Events::GetAllEventsByDateReverse();
 <div class="create-news">
 
     <form method="post" enctype="multipart/form-data">
-        <input type="text" name="albumName" placeholder="Albummets Navn">
-        <?= @$error['albumTitle'] ?>
+        <input type="text" name="albumName" placeholder="Albummets Navn" value="<?= @$POST['albumName'] ?>">
+        <?= @$error['albumName'] ?>
         <?php
             if(sizeof($events) > 0) {
         ?>
@@ -88,6 +93,7 @@ $events = Events::GetAllEventsByDateReverse();
                 }
             ?>
         </select>
+        <?= @$error['event'] ?>
         <?php
             } else 
             {
@@ -96,7 +102,7 @@ $events = Events::GetAllEventsByDateReverse();
         ?>
         <input type="file" name="files[]" id="file" class="inputfile" multiple="multiple"/>
         <label for="file" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span>Klik for at vælge billeder til galleriet.</span></label>
-
+        <?= @$error['image'] ?>
         <input name="submit" type="submit" value="Opret Galleri">
         <?= @$status ?>
     </form>

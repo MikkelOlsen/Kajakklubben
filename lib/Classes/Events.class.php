@@ -74,8 +74,7 @@ class Events extends Database
                                 FROM events
                                 LEFT JOIN albums
                                 ON albums.albumEventId = events.eventsId
-                                WHERE events.eventsId NOT IN (SELECT albumEventId from albums)
-                                AND DATE(NOW()) >= `eventStartDate`
+                                WHERE DATE(NOW()) >= `eventStartDate`
                                 ORDER BY `eventStartDate` DESC")->fetchAll();
     }
 }
