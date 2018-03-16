@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kajakklubben</title>
     <link rel="stylesheet" href="<?= Router::$BASE ?>assets/css/base.css">
+    <link rel="stylesheet" href="<?= Router::$BASE ?>assets/css/lightbox.css">
 </head>
 <body>
 <header class="header"><?php require_once __ROOT__ . DS . 'includes' . DS . 'header.php'; ?></header>

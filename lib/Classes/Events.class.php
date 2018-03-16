@@ -31,6 +31,7 @@ class Events extends Database
     public static function DeleteEvent(string $ID) : object
     {
         $mediaId = (new self)->query("SELECT eventCover FROM events WHERE eventsId = :ID", [':ID' => $ID])->fetch();
+        (new self)->query("DELETE FROM gallery WHERE fkGalleryEventId = :ID", [':ID' => $ID]);
         (new self)->query("DELETE FROM events WHERE eventsId = :ID", [':ID' => $ID]);
         return $mediaId;
     }

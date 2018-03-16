@@ -9,12 +9,12 @@ class Media extends Database
             if(!file_exists($options['path'])) {
                 mkdir($options['path'], 0777, true);
             }
+            $uniqueName = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
             foreach($options['sizes'] as $size) {
             $validExts = $options['validExts'];
             $width = $size['width'];
             $height = $size['height'];
             $ext = strtolower(pathinfo($files['name'], PATHINFO_EXTENSION));
-            $uniqueName = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
             if(in_array($ext, $validExts)) {
                 list($w, $h) = getimagesize($files['tmp_name']);
 
@@ -136,24 +136,22 @@ class Media extends Database
         return false;
     }
 
-    public static function PpdateImg(array $files, array $options = [])
+    public static function UpdateImg(array $files, array $options = [])
     {
-       $infoArray = self::imageHandler($files, $options);
-
-        if($this->unlinkImage($options['mediaId']) == true) {
+           $infoArray = self::ImageHandler($files, $options);
            try {
-            $this->db->query("UPDATE `media` SET `filepath`=:path, `filename`=:name, `mime`=:mime WHERE mediaId = :id", 
+            self::UnlinkImage($options['mediaId']);
+            (new self)->query("UPDATE `media` SET `filepath`=:PATH, `filename`=:NAME, `mime`=:MIME WHERE mediaId = :ID", 
             [
-                ':path' => $infoArray['filePath'],
-                ':name' => $infoArray['fileName'],
-                ':mime' => $infoArray['mime'],
-                ':id' => $options['mediaId']
+                ':PATH' => $infoArray['filePath'],
+                ':NAME' => $infoArray['fileName'],
+                ':MIME' => $infoArray['mime'],
+                ':ID' => $options['mediaId']
             ]);
             return true;
            } catch(PDOExcetption $e) {
                return false;
            }
            return false;
-       }
     }
 }

@@ -27,6 +27,10 @@
                             'normal' => array(
                                 'height' => '600',
                                 'width' => '900'
+                            ),
+                            'gallery' => array(
+                                'height' => '171',
+                                'width' => '222' 
                             )
                         ),
                         'path' => 'assets/images/events',
@@ -35,7 +39,7 @@
 
                     if($_FILES['files']['size'] !== 0)
                     {
-                        Media::UpdateImg($_FILES, $options);
+                        Media::UpdateImg($_FILES['files'], $options);
                     }
                     if(Events::UpdateEvent($DATA, Router::GetParamByName('ID')) == true) 
                     {

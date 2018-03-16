@@ -26,6 +26,10 @@
                             'normal' => array(
                                 'height' => '600',
                                 'width' => '900'
+                            ),
+                            'gallery' => array(
+                                'height' => '171',
+                                'width' => '222' 
                             )
                         ),
                         'path' => 'assets/images/events',
