@@ -128,5 +128,11 @@
       'view' => 'Admin'.DS.'Gallery'.DS.'Delete.view.php',
       'params' => ['GalleryID', 'ID']
     ]
+    ,
+    [
+      'path' => '/Admin/Gallery/Delete-Album',
+      'view' => 'Admin'.DS.'Gallery'.DS.'AlbumDelete.view.php',
+      'params' => ['ID']
+    ]
   );
 ?>

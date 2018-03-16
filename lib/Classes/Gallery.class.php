@@ -52,6 +52,14 @@ class Gallery extends Database
         return $mediaId;
     }
 
+    public static function DeleteAlbum(string $ID) : array
+    {
+        $mediaId = (new self)->query("SELECT fkGalleryMediaId FROM gallery WHERE fkGalleryAlbumId = :ID", [':ID' => $ID])->fetchAll();
+        (new self)->query("DELETE FROM gallery WHERE fkGalleryAlbumId = :ID", [':ID' => $ID]);
+        (new self)->query("DELETE FROM albums WHERE albumId = :ID", [':ID' => $ID]);
+        return $mediaId;
+    }
+
     public static function CreateAlbum($DATA, $ID = null) : object
     {
         $coverId = (new self)->query("SELECT mediaId FROM `media` ORDER by mediaId DESC LIMIT 1 ")->fetch();

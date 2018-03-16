@@ -4,7 +4,7 @@ if(isset($POST['submit'])) {
         $eventId = null;
         $selectValid = false;
         $error = [];
-        if(isset($POST['event']) && $POST['event'] !== 0) 
+        if(isset($POST['event']) && !empty($POST['event'])) 
         {
             foreach($events as $singleEvent) {
                 if($POST['event'] == $singleEvent->eventsId )

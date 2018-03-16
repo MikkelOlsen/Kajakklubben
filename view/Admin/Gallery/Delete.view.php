@@ -4,9 +4,9 @@
         $mediaId = Gallery::DeleteSingleImage(Router::GetParamByName('ID'));
         if(Media::UnlinkImage($mediaId->fkGalleryMediaId, true) == true)
         {
-            Router::Redirect('/Admin/Gallery/Edit/'.Router::GetParamByName('GalleryID'));
+            Router::Redirect('/Admin/Gallery');
         }
     } else {
-        Router::Redirect('/Admin/Gallery/Edit/'.Router::GetParamByName('GalleryID'));
+        Router::Redirect('/Admin/Gallery');
     }
 ?>

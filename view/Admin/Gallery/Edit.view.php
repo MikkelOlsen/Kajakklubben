@@ -4,12 +4,14 @@
     }
     $currentAlbum = Gallery::CurrentAlbum(Router::GetParamByName('ID'));
     $gallery = Gallery::GetAllAlbumImages(Router::GetParamByName('ID'));
+    $events = Events::GetAllEventsByDateReverse();
+
 
     if(isset($POST['submit'])) {
         $eventId = null;
         $selectValid = false;
         $error = [];
-        if(isset($POST['event']) && $POST['event'] !== 0) 
+        if(isset($POST['event']) && !empty($POST['event'])) 
         {
             foreach($events as $singleEvent) {
                 if($POST['event'] == $singleEvent->eventsId )
@@ -65,7 +67,7 @@
                     }
                     if(sizeof($error) == 0) 
                     {
-                        if($POST['albumName'] !== $currentAlbum->albumName || isset($POST['event']) && $POST['event'] !== 0 && $POST['event'] !== $currentAlbu->albumEventId) 
+                        if($POST['albumName'] !== $currentAlbum->albumName || isset($POST['event']) && $POST['event'] !== 0 && $POST['event'] !== $currentAlbum->albumEventId) 
                         {
                             Gallery::UpdateAlbumImg($POST, $eventId);
                         }
@@ -101,6 +103,26 @@
             <form method="post" enctype="multipart/form-data">
                 <input type="text" name="albumName" placeholder="Albummets Navn" value="<?= $currentAlbum->albumName ?>">
                 <?= @$error['albumTitle'] ?>
+                <select name="event">
+                    <?php
+                        $select = false;
+                        $selectDef = '';
+                        foreach($events as $event) 
+                        {
+                            $selected = '';
+                            if($event->eventsId == $currentAlbum->albumEventId) {
+                                $selected = 'selected';
+                                $select = true;
+                            }
+                            echo '<option selected="'.$selected.'" value="'.$event->eventsId.'">'.$event->eventTitle.'</option>';
+                        }
+                        if($select == false) {
+                            $selectDef = 'selected';
+                        }
+                        ?>
+                    <option <?= $selectDef ?> value="" style="display:none">Klik for at vælge et arrangement, som galleriet skal tilhøre</option>
+                </select>
+                <?= @$error['event'] ?>
 
                 <input type="file" name="files[]" id="file" class="inputfile" multiple="multiple"/>
                 <label for="file" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span>Klik for at tilføje billeder til galleriet.</span></label>

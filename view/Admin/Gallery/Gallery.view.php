@@ -14,7 +14,7 @@
             echo '<tr>';
             echo '<td class="mdl-data-table__cell--non-numeric">'.$gallery->albumName.'</td>';
             echo '<td><a href="'.Router::$BASE.'Admin/Gallery/Edit/'.$gallery->albumId.'"><i class="material-icons">mode_edit</i></td>';
-            echo '<td><a href="'.Router::$BASE.'Admin/Gallery/Delete/'.$gallery->albumId.'" class="delete"><i class="material-icons">delete</i></td>';
+            echo '<td><a href="'.Router::$BASE.'Admin/Gallery/Delete-Album/'.$gallery->albumId.'" class="delete"><i class="material-icons">delete</i></td>';
             echo '</tr>';
         }
       ?>
