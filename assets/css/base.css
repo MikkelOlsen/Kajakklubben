@@ -393,6 +393,7 @@ body {
 
 .gallery > .albums img {
     width: 100%;
+    max-height: 171px;
 }
 
 .gallery > .albums .album {
