@@ -98,7 +98,7 @@
 <div class="gallery-edit">
     <div class="form">
     <h2>Rediger Albummet - <i><?= $currentAlbum->albumName ?></i> </h2>
-
+    <a id="baseURL" style="display:hidden;" href="<?= Router::$BASE ?>"></a>
         <div class="create-news">
             <form method="post" enctype="multipart/form-data">
                 <input type="text" name="albumName" placeholder="Albummets Navn" value="<?= $currentAlbum->albumName ?>">
@@ -134,15 +134,23 @@
     </div>
     <div class="gallery">
         <h2>Nuværende billeder</h2>
+        <i class="material-icons remove">clear</i> = Slet Billede<br>
+        <i class="material-icons current">check_circle</i> = Cover billede (Kan ikke slettes).
         <?php
             echo '<div class="albums">';
             
             foreach($gallery as $galleryImage)
             {
+                $border = 'album_cover';
+                $a = '<a class="delLink"><i class="material-icons top-left current">check_circle</i></a>';
+                if($galleryImage->fkGalleryMediaId !== $currentAlbum->albumCoverId) 
+                {
+                    $a = '<a class="delLink" href="' . $galleryImage->galleryId . '"><i class="material-icons top-left remove">remove_circle</i></a>';
+                    $border = '';
+                }
                 echo '<div class="album">';
-                echo '<img src="'. Router::$BASE . $galleryImage->filepath.'/222x171_'.$galleryImage->filename.'.'.$galleryImage->mime.'" alt="'.$currentAlbum->albumName.'">';
-                echo '<a class="delLink" href="'. Router::$BASE . 'Admin/Gallery/Delete/' . $currentAlbum->albumId . '/' . $galleryImage->galleryId.'"><i class="material-icons top-right">clear</i></a>';
-                echo '</a>';
+                echo '<img class="'.$border.'" src="'. Router::$BASE . $galleryImage->filepath.'/222x171_'.$galleryImage->filename.'.'.$galleryImage->mime.'" alt="'.$currentAlbum->albumName.'">';
+                echo $a;
                 echo '</div>';
             }
             echo '</div>'

@@ -133,6 +133,7 @@ class Media extends Database
             }
             return true;
         } catch(PDOException $e) {
+            echo $e->getMessage();
             return false;
         }
         return false;

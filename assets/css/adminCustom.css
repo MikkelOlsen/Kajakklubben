@@ -133,20 +133,39 @@ div.error {
     position: relative;
 }
 
-.top-right {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: red;
-    font-size: 15px;
+.gallery-edit .gallery i {
+    font-size: 20px;
     text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000; 
-    background-color: white;
+}
+
+.top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.remove {
+    color: red;
+}
+
+.current {
+    color: green;
+}
+
+.top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .gallery-edit > .form > .create-news > form{
     width: 60%;
+}
+
+.gallery-edit .album_cover {
+    border: 2px solid green;
 }

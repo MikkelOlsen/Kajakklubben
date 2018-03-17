@@ -12,7 +12,7 @@ class Gallery extends Database
 
     public static function GetAllAlbumImages(string $ID) : array
     {
-        return (new self)->query("SELECT galleryId, filename, filepath, mime 
+        return (new self)->query("SELECT galleryId, fkGalleryMediaId, filename, filepath, mime 
                                   FROM gallery 
                                   INNER JOIN media 
                                   ON gallery.fkGalleryMediaId = media.mediaId
@@ -52,11 +52,23 @@ class Gallery extends Database
         return $mediaId;
     }
 
-    public static function DeleteAlbum(string $ID) : array
+    public static function DeleteAlbum(string $ID, string $BASE) : array
     {
         $mediaId = (new self)->query("SELECT fkGalleryMediaId FROM gallery WHERE fkGalleryAlbumId = :ID", [':ID' => $ID])->fetchAll();
+        $galleryName = (new self)->query("SELECT albumName FROM albums WHERE albumId = :ID", [':ID' => $ID])->fetch();
         (new self)->query("DELETE FROM gallery WHERE fkGalleryAlbumId = :ID", [':ID' => $ID]);
         (new self)->query("DELETE FROM albums WHERE albumId = :ID", [':ID' => $ID]);
+        $folderName = str_replace(' ', '_', $galleryName->albumName);
+        $dir = ROOT . '/assets/images/gallery/' . $folderName ;
+        if(is_dir($dir))
+        {
+            $files = glob($dir . '/*');
+            foreach($files as $file)
+            {
+                unlink($file);
+            }
+            rmdir($dir);
+        }
         return $mediaId;
     }
 

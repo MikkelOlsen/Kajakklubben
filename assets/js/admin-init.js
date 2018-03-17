@@ -31,4 +31,23 @@ Array.prototype.forEach.call( inputs, function( input )
 	});
 });
 
+document.querySelectorAll('.delLink').forEach( (elm) => {
+	elm.addEventListener('click', (e) => {
+		e.preventDefault();
+		const baseURL = document.getElementById('baseURL').getAttribute('href');
 
+		fetch(baseURL + 'Api/Gallery/Delete/' + elm.getAttribute('href'), {method: 'GET', body: undefined})
+			.then( (res) => {
+				return res.json()
+			})
+			.then( (data) => {
+				if(!data.err)
+				{
+					elm.parentElement.remove()
+				}
+			})
+			.catch( (err) => {
+				console.warn('Fejl i fetch! -> ', err)
+			})
+	});
+});

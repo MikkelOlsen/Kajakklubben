@@ -124,11 +124,11 @@
       'params' => ['ID']
     ],
     [
-      'path' => '/Admin/Gallery/Delete',
-      'view' => 'Admin'.DS.'Gallery'.DS.'Delete.view.php',
-      'params' => ['GalleryID', 'ID']
-    ]
-    ,
+      'path' => '/Api/Gallery/Delete',
+      'view' => 'Api'.DS.'Gallery.view.php',
+      'params' => ['DELID'],
+      'layout' => 'Api'
+    ],
     [
       'path' => '/Admin/Gallery/Delete-Album',
       'view' => 'Admin'.DS.'Gallery'.DS.'AlbumDelete.view.php',
