@@ -2,7 +2,6 @@
 if(isset($POST['search']) && !empty($POST['search']))
 {
     $searchResults = Search::SearchResults($POST['search']);
-    // echo '<pre>',var_dump($searchResults), '<pre>';
 
  
 ?>
