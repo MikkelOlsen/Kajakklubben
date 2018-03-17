@@ -189,6 +189,10 @@
       'view' => 'Api'.DS.'Newsletter.view.php',
       'params' => ['EMAIL'],
       'layout' => 'Api'
+    ],
+    [
+      'path' => '/Soeg',
+      'view' => 'Frontend'.DS.'Search.view.php',
     ]
   );
 ?>

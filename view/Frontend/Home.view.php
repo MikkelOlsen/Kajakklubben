@@ -1,7 +1,3 @@
-<?php
-
-
-?>
 <a id="baseURL" style="display:hidden;" href="<?= Router::$BASE ?>"></a>
 <div class="home">
     <div class="home-info">
@@ -21,7 +17,7 @@
         </p>
     </div>
     <div class="home-aside">
-        <form method="post" action="<?= Router::$BASE ?>Galleri">
+        <form method="post" action="<?= Router::$BASE ?>Soeg">
             <input type="search" class="search" name="search" placeholder="Søg på sitet"> 
         </form>
         <div class="home-news">
