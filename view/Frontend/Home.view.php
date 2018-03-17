@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+<a id="baseURL" style="display:hidden;" href="<?= Router::$BASE ?>"></a>
 <div class="home">
     <div class="home-info">
         <h2>Om Klubben</h2>
@@ -16,8 +21,8 @@
         </p>
     </div>
     <div class="home-aside">
-        <form method="post">
-            <input type="text" name="search" placeholder="Søg på sitet">
+        <form method="post" action="<?= Router::$BASE ?>Galleri">
+            <input type="search" class="search" name="search" placeholder="Søg på sitet"> 
         </form>
         <div class="home-news">
             <img src="./assets/images/news.jpg" alt="">
@@ -28,6 +33,9 @@
                 <a href="<?= Router::$BASE . 'Nyheder' ?>">Nyheder >></a>
             </div>
         </div>
+        <form id="newsletter" method="post">
+            <input id="newsletterEmail" type="text" name="newsLetter" placeholder="Tilmeld dig til nyhedsbrevet">
+        </form>
         <div class="home-news">
             <img src="./assets/images/news.jpg" alt="">
             <div class="home-news-text">

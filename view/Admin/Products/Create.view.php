@@ -24,8 +24,8 @@
                         ),
                         'sizes' => array(
                             'normal' => array(
-                                'height' => '93',
-                                'width' => '140'
+                                'height' => '140',
+                                'width' => '93'
                             )
                         ),
                         'path' => 'assets/images/products',

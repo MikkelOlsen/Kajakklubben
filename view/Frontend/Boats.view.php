@@ -11,54 +11,34 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="boats-category">
-                <td>Havkajakker</td>
-            </tr>
-            <tr class="content-row">
-                <td data-column="Type:">Hasle Explorer med finne (K1)</td>
-                <td data-column="Sværhedsgrad:"></td>
-                <td data-column="Antal:">2 stk</td>
-                <td data-column="image" class="boat-image"><img src="./assets/images/kajak01.jpg" alt=""></td>
-                <td data-column="Til Salg:">1.500 DKK</td>
-            </tr>
-            <tr class="content-row">
-                <td data-column="Type:">Hasle Explorer med finne (K1)</td>
-                <td data-column="Sværhedsgrad:"></td>
-                <td data-column="Antal:">2 stk</td>
-                <td data-column="image" class="boat-image"><img src="./assets/images/kajak01.jpg" alt=""></td>
-                <td data-column="Til Salg:">1.500 DKK</td>
-            </tr>
-            <tr class="content-row">
-                <td data-column="Type:">Hasle Explorer med finne (K1)</td>
-                <td data-column="Sværhedsgrad:"></td>
-                <td data-column="Antal:">2 stk</td>
-                <td data-column="image" class="boat-image"><img src="./assets/images/kajak01.jpg" alt=""></td>
-                <td data-column="Til Salg:">1.500 DKK</td>
-            </tr>
-            <tr class="boats-category">
-                <td>Havkajakker</td>
-            </tr>
-            <tr class="content-row">
-                <td data-column="Type:">Hasle Explorer med finne (K1)</td>
-                <td data-column="Sværhedsgrad:"></td>
-                <td data-column="Antal:">2 stk</td>
-                <td data-column="image" class="boat-image"><img src="./assets/images/kajak01.jpg" alt=""></td>
-                <td data-column="Til Salg:">1.500 DKK</td>
-            </tr>
-            <tr class="content-row">
-                <td data-column="Type:">Hasle Explorer med finne (K1)</td>
-                <td data-column="Sværhedsgrad:"></td>
-                <td data-column="Antal:">2 stk</td>
-                <td data-column="image" class="boat-image"><img src="./assets/images/kajak01.jpg" alt=""></td>
-                <td data-column="Til Salg:">1.500 DKK</td>
-            </tr>
-            <tr class="content-row">
-                <td data-column="Type:">Hasle Explorer med finne (K1)</td>
-                <td data-column="Sværhedsgrad:"></td>
-                <td data-column="Antal:">2 stk</td>
-                <td data-column="image" class="boat-image"><img src="./assets/images/kajak01.jpg" alt=""></td>
-                <td data-column="Til Salg:">1.500 DKK</td>
-            </tr>
+        <?php
+            foreach(Categories::GetAllCategories() as $category)
+            {
+                $products = Products::GetAllProducts($category->kajakTypeId);
+                if(sizeof($products) > 0) {
+                    echo '<tr class="boats-category">';
+                    echo '<td>'.$category->kajakTypeName.'</td>';
+                    echo '</tr>';
+                    foreach($products as $product) {
+                        $price = isset($product->salesPrice) ? number_format($product->salesPrice,0,",",".").' DKK' : '';
+                        echo '<tr class="content-row">';
+                        echo '<td data-column="Type:">'.$product->kajakName.'</td>';
+                        echo '<td data-column="Sværhedsgrad:">'.$category->kajakTypeLevel.'</td>';
+                        echo '<td data-column="Antal:">'.$product->kajakStock.'</td>';
+                        echo '<td data-column="image"><img src="'.Router::$BASE . $product->filepath .'/140x93_'.$product->filename.'.'.$product->mime.'" alt="'.$product->kajakName.'"></td>';
+                        echo '<td data-column="Til Salg:">'.$price.'</td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr>';
+                    echo '<td class="mdl-data-table__cell--non-numeric">Der er ingen produkter til <b>'.$category->kajakTypeName.'</b></td>';
+                    echo '</tr>';
+                    echo '<tr></tr>';
+                }
+            }
+            
+        ?>
+            
         </tbody>
     </table>
 </div>

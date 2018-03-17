@@ -27,8 +27,5 @@
   </body>
 <script src="<?= Router::$BASE ?>assets/js/navigation.js"></script>
 <script src="<?= Router::$BASE ?>assets/js/lightbox.js" type="text/javascript"></script>
-<script>
-var lightbox = new Lightbox();
-lightbox.load();
-</script> 
+<script src="<?= Router::$BASE ?>assets/js/frontend-init.js"></script>
 </html>

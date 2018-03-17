@@ -183,6 +183,12 @@
       'layout' => 'Admin',
       'params' => ['ID'],
       'title' => 'Rediger Kajak'
+    ],
+    [
+      'path' => '/Api/Newsletter',
+      'view' => 'Api'.DS.'Newsletter.view.php',
+      'params' => ['EMAIL'],
+      'layout' => 'Api'
     ]
   );
 ?>

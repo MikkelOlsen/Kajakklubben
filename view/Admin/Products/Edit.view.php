@@ -2,7 +2,6 @@
     $currentProduct = Products::CurrentProduct(Router::GetParamByName('ID'));
     if(isset($POST['productSubmit']))
     {       
-        echo 'sub';
 
                 $error = [];
                 $DATA['productName'] = Validate::stringBetween($POST['productName'], 2, 45) ? $POST['productName'] : $error['productName'] = '<div class="error">Kajak navn må kun inholde bogstaver og tal. Samt være mellem 2 og 45 tegn.</div>';
@@ -12,7 +11,6 @@
                     $DATA['productPrice'] = Validate::intBetween($POST['productPrice'], 1, 5) ? $POST['productPrice'] : $error['productPrice'] = '<div class="error">Prisen må kun indeholde tal og være mellem 1 og 5 tal.</div>';
                 }
                 $DATA['productType'] = Validate::intBetween($POST['productType'], 1 , 20) ? $POST['productType'] : $error['productType'] = '<div class="error">Du skal vælge en kajak type.</div>';
-                var_dump($error);
                 if(sizeof($error) == 0) 
                 {
                     echo 'no err';
@@ -34,7 +32,7 @@
                     );
                     if($_FILES['files']['size'] !== 0)
                     {
-                        $MediaId = Media::UpdateImg($DATA['files'], $options);
+                        $MediaId = Media::UpdateImg($_FILES['files'], $options);
                     }
                     if(Products::UpdateProduct($DATA, Router::GetParamByName('ID')) == true) 
                     {
