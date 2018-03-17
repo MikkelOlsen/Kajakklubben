@@ -16,7 +16,9 @@
                 {
                     if(News::InsertNews($DATA) == true)
                     {
-                        $status = '<div class="success">Nyheden er blevet oprettet.</div>';
+                        $status = '<a id="successTooltip" href="'.Router::$BASE.'Admin/News" class="success">Success</a>
+                                  <div class="mdl-tooltip mdl-tooltip--large" data-mdl-for="successTooltip">Klik her for at komme tilbage til arrangementer.</div>';
+
                     } else 
                     {
                         $status = '<div class="error">Der skete desværre en fejl ved indsættelsen af dataen. Prøv igen.</div>';

@@ -228,11 +228,11 @@ body {
     display: grid;
     height: 50%;
     justify-items: center;
-    width: 150px;
+    width: 140px;
 }
 
 .home > .home-products > .home-products-box > .product img {
-    width: 150px;
+    width: 140px;
 }
 
 .home > .home-products > .home-products-box > .product > a {

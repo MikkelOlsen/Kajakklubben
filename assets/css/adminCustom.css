@@ -31,6 +31,20 @@ div.error {
     color: red !important;
 }
 
+body {
+	display: grid;
+	grid-template-areas: "header header header"
+	                     ". main ."
+	                     "footer footer footer";
+	grid-template-columns: 1fr 1400px 1fr;
+	grid-template-rows: 400px 
+						1fr
+						40px;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
 
 /* News styling */
 
@@ -48,10 +62,13 @@ div.error {
 
 .create-news form input, .create-news form select {
     padding: 15px;
+    padding-right: 0;
+    padding-left: 0;
     background-color: transparent;
     border: 1px solid transparent;
     transition-duration: 0.5s;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .create-news form input:focus, .create-news form select:focus {

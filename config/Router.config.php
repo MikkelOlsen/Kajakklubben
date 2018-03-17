@@ -131,8 +131,58 @@
     ],
     [
       'path' => '/Admin/Gallery/Delete-Album',
-      'view' => 'Admin'.DS.'Gallery'.DS.'AlbumDelete.view.php',
+      'view' => 'Admin'.DS.'Gallery'.DS.'Delete.view.php',
       'params' => ['ID']
+    ],
+    [
+      'path' => '/Admin/Categories',
+      'view' => 'Admin'.DS.'Categories'.DS.'Categories.view.php',
+      'layout' => 'Admin',
+      'title' => 'Kajak Typer'
+    ],
+    [
+      'path' => '/Admin/Categories/Create',
+      'view' => 'Admin'.DS.'Categories'.DS.'Create.view.php',
+      'layout' => 'Admin',
+      'title' => 'Opret Kajak Type'
+    ],
+    [
+      'path' => '/Admin/Categories/Delete',
+      'view' => 'Admin'.DS.'Categories'.DS.'Delete.view.php',
+      'layout' => 'Admin',
+      'params' => ['ID']
+    ],
+    [
+      'path' => '/Admin/Categories/Edit',
+      'view' => 'Admin'.DS.'Categories'.DS.'Edit.view.php',
+      'layout' => 'Admin',
+      'params' => ['ID'],
+      'title' => 'Rediger Kajak Type'
+    ],
+    [
+      'path' => '/Admin/Products',
+      'view' => 'Admin'.DS.'Products'.DS.'Products.view.php',
+      'layout' => 'Admin',
+      'title' => 'Bådpark'
+    ],
+    [
+      'path' => '/Admin/Products/Create',
+      'view' => 'Admin'.DS.'Products'.DS.'Create.view.php',
+      'layout' => 'Admin',
+      'title' => 'Opret Kajak'
+    ],
+    [
+      'path' => '/Admin/Products/Delete',
+      'view' => 'Admin'.DS.'Products'.DS.'Delete.view.php',
+      'layout' => 'Admin',
+      'params' => ['ID']
+    ],
+    [
+      'path' => '/Admin/Products/Edit',
+      'view' => 'Admin'.DS.'Products'.DS.'Edit.view.php',
+      'layout' => 'Admin',
+      'params' => ['ID'],
+      'title' => 'Rediger Kajak'
     ]
   );
 ?>

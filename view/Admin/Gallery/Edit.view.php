@@ -134,7 +134,7 @@
     </div>
     <div class="gallery">
         <h2>Nuværende billeder</h2>
-        <i class="material-icons remove">clear</i> = Slet Billede<br>
+        <i class="material-icons remove">remove_circle</i> = Slet Billede<br>
         <i class="material-icons current">check_circle</i> = Cover billede (Kan ikke slettes).
         <?php
             echo '<div class="albums">';
