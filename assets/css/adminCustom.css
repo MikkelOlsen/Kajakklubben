@@ -55,7 +55,7 @@ body {
 }
 
 .create-news form {
-    width: 40%;
+    width: 80%;
     display: grid;
     grid-template-columns: 1fr;
 }

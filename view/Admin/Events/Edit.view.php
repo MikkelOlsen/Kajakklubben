@@ -63,9 +63,11 @@
     }
 ?>
 
-<h2>Rediger Arrangement</h2>
+<div class="gallery-edit">
 
-<div class="create-news">
+    
+    <div class="create-news">
+            <h2>Rediger Arrangement</h2>
     <form method="post" enctype="multipart/form-data">
         <?= Token::createTokenInput() ?>
         <input type="text" name="eventTitle" placeholder="Nyheds Titel" value="<?= $CurrentEvent->eventTitle ?>">
@@ -82,3 +84,9 @@
     </form>
 
 </div>
+
+<div class="current-img">
+    <h3>Nuværende Billede</h3>
+    <img src="<?= Router::$BASE . $CurrentEvent->filepath . '/900x600_' . $CurrentEvent->filename . '.' . $CurrentEvent->mime ?>" alt="<?= $CurrentEvent->eventTitle ?>">
+</div>
+            </div>

@@ -37,7 +37,10 @@ class Events extends Database
 
     public static function CurrentEvent(string $ID) : object
     {
-        return (new self)->query("SELECT * FROM events WHERE eventsId = :ID", [':ID' => $ID])->fetch();
+        return (new self)->query("SELECT `eventsId`, `eventTitle`, `eventStartDate`, `eventDescription`, filename, filepath, mime FROM events 
+                                 INNER JOIN media
+                                 ON events.eventCover = media.mediaId
+                                 WHERE eventsId = :ID", [':ID' => $ID])->fetch();
     }
 
     public static function UpdateEvent(array $DATA, string $ID) : bool
