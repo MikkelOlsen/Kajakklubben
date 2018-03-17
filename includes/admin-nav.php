@@ -1,11 +1,12 @@
   <nav class="navbar">
-        <a class="link" href="<?= Router::$BASE . '/Om-Klubben' ?>">Til Forsiden</a>
+        <a class="link" href="<?= Router::$BASE . 'Om-Klubben' ?>">Til Forsiden</a>
         <a class="link <?=Router::IsActive('/Admin/Dashboard', 'active')?>" href="<?= Router::$BASE . 'Admin/Dashboard' ?>">Dashboard</a>
         <a class="link <?=Router::IsActive('/Admin/News', 'active')?>" href="<?= Router::$BASE . 'Admin/News' ?>">Nyheder</a>
         <a class="link <?=Router::IsActive('/Admin/Events', 'active')?>" href="<?= Router::$BASE . 'Admin/Events' ?>">Arrangementer</a>
         <a class="link <?=Router::IsActive('/Admin/Gallery', 'active')?>" href="<?= Router::$BASE . 'Admin/Gallery' ?>">Galleri</a>
         <a class="link <?=Router::IsActive('/Admin/Categories', 'active')?>" href="<?= Router::$BASE . 'Admin/Categories' ?>">Kajak Typer</a>
         <a class="link <?=Router::IsActive('/Admin/Products', 'active')?>" href="<?= Router::$BASE . 'Admin/Products' ?>">Bådpark</a>
+        <a class="link <?=Router::IsActive('/Admin/Newsletter', 'active')?>" href="<?= Router::$BASE . 'Admin/Newsletter' ?>">Nyhedsbrev - Liste</a>
         <a class="link <?=Router::IsActive('/Bliv-Medlem', 'active')?>" href="<?= Router::$BASE . 'Bliv-Medlem' ?>">Bliv Medlem</a>
         <a class="link <?=Router::IsActive('/Min-Side', 'active')?>" href="<?= Router::$BASE . 'Min-Side' ?>">Min Side</a>
         <a class="link <?=Router::IsActive('/Kontakt', 'active')?>" href="<?= Router::$BASE . 'Kontakt' ?>">Kontakt</a>

@@ -1,13 +1,11 @@
-<?php
-if(isset($POST['search']) && !empty($POST['search']))
-{
-    $searchResults = Search::SearchResults($POST['search']);
-
- 
-?>
 <form class="search" method="post">
     <input type="search" name="search" placeholder="Søge Tekst" value="<?= $POST['search'] ?>">
 </form>
+<?php 
+if(isset($POST['search']) && !empty($POST['search']))
+{
+    $searchResults = Search::SearchResults($POST['search']);
+?>
 <div class="search-results">
     <div class="title">
         <h2>Søge Resultater - Nyheder</h2>
@@ -29,7 +27,7 @@ if(isset($POST['search']) && !empty($POST['search']))
         }
     }else 
     {
-        echo '<h2>Der blev ikke fundet nogle resultater i nyheder efter - <b>'.$POST['search'].'</b></h2>';
+        echo '<h2>Der blev ikke fundet nogle resultater i nyheder efter - "'.$POST['search'].'"</h2>';
     }
     ?>
     </div>
@@ -50,14 +48,11 @@ if(isset($POST['search']) && !empty($POST['search']))
         }
     } else 
     {
-        echo '<h2>Der blev ikke fundet nogle resultater i arrangementer efter - <b>'.$POST['search'].'</b></h2>';
+        echo '<h2>Der blev ikke fundet nogle resultater i arrangementer efter - "'.$POST['search'].'"</h2>';
     }
     ?>
     </div>
 </div>
 <?php
 }
-else 
-{
-    Router::Redirect('/Om-Klubben');
-}
+

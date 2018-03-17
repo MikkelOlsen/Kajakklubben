@@ -62,36 +62,7 @@ class News extends Database
         return (new self)->query("SELECT `newsId`,`newsTitle`, `newsContent`, `newsStartDate` FROM `news` WHERE DATE(NOW()) between `newsStartDate` AND `newsEndDate`ORDER BY `newsStartDate` DESC")->fetchAll();
     }
 
-    public static function NewsletterCheck(string $EMAIL) : bool
-    {
-        $emailreturn = (new self)->query("SELECT newsLetterSubscribersId FROM `newslettersubscribers` WHERE newsLetterSubscribersEmail = :EMAIL LIMIT 1", [':EMAIL' => $EMAIL])->fetchAll();
-        if(!isset($emailreturn['newsLetterSubscribersId']))
-        {
-            return true;
-        } else 
-        {
-            return false;
-        }
-    }
-
-    public static function CreateNewsletter(string $EMAIL) : bool
-    {
-        try
-        {
-            if(self::NewsletterCheck($EMAIL) == true)
-            {
-                (new self)->query("INSERT INTO newslettersubscribers (newsLetterSubscribersEmail) VALUES (:EMAIL)", [':EMAIL' => $EMAIL]);
-                return true;
-            }
-            else {
-                return false;
-            }
-        } 
-        catch(PDOException $e)
-        {
-            return false;
-        }
-    }
+    
 
 
 }

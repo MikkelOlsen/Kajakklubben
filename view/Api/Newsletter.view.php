@@ -5,7 +5,7 @@ if(Router::GetParamByName('EMAIL') !== NULL)
     if(Validate::email(Router::GetParamByName('EMAIL')) == true) 
     {
         
-            if(News::CreateNewsletter(Router::GetParamByName('EMAIL')) == true)
+            if(Newsletter::CreateNewsletter(Router::GetParamByName('EMAIL')) == true)
             {
                 echo json_encode(['err' => false]);
             }

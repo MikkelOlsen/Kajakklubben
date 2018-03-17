@@ -2,7 +2,13 @@
   Router::SetViewFoler(__ROOT__ . DS . 'view' . DS);
   Router::SetDefaultRoute('/Om-Klubben');
   Router::SetDefaultLayout('Frontend');
+  Router::SetErrorPath('/Fejl');
   CONST ROUTES = array(
+    [
+      'path' => '/Fejl',
+      'params' => ['ERROR_ID', 'PAGE'],
+      'view' => 'Error.view.php'
+    ],
     [
       'path' => '/Om-Klubben',
       'view' => 'Frontend'.DS.'Home.view.php'
@@ -183,6 +189,18 @@
       'layout' => 'Admin',
       'params' => ['ID'],
       'title' => 'Rediger Kajak'
+    ],
+    [
+      'path' => '/Admin/Newsletter',
+      'view' => 'Admin'.DS.'Newsletter'.DS.'Newsletter.view.php',
+      'layout' => 'Admin',
+      'title' => 'Nyhedsbrevs Tilmeldte'
+    ],
+    [
+      'path' => '/Admin/Newsletter/Delete',
+      'view' => 'Admin'.DS.'Newsletter'.DS.'Delete.view.php',
+      'layout' => 'Admin',
+      'params' => ['ID']
     ],
     [
       'path' => '/Api/Newsletter',

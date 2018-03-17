@@ -5,18 +5,19 @@
 class Router extends \PDO
 {
 
-  public static       $Params = [],
-                      $BASE   = null,
-                      $View   = null,
-                      $Title  = null,
-                      $Layout = null;
+  public static       $Params   = [],
+                      $BASE     = null,
+                      $View     = null,
+                      $Title    = null,
+                      $Layout   = null;
 
-  private static      $RouteIndex   = null,
-                      $Routes       = null,
-                      $REQ_ROUTE    = null,
-                      $DefaultRoute = null,
-                      $ViewFolder   = null,
-                      $currentRoute = null;
+  private static      $RouteIndex    = null,
+                      $Routes        = null,
+                      $REQ_ROUTE     = null,
+                      $DefaultRoute  = null,
+                      $ViewFolder    = null,
+                      $errorPagePath = null,
+                      $currentRoute  = null;  
 
   public static function ValidateRoutes(array $routes, array $keys) : bool
   {
@@ -46,6 +47,10 @@ class Router extends \PDO
     public static function SetDefaultLayout(string $layout) : void
     {
         self::$Layout = $layout;
+    }
+    public static function SetErrorPath(string $path) : void
+    {
+        self::$errorPagePath = $path;
     }
 
   public static function GetParamByName(string $param) : string
@@ -80,6 +85,7 @@ class Router extends \PDO
     $newPath = explode('/', rtrim(self::$REQ_ROUTE, '/'));
     $newPath = array_splice($newPath, 1, count($newPath)-1);
     $routePath = [];
+    $match = false;
     
 
     foreach(self::$Routes as $routeIdx => $route) {
@@ -98,8 +104,7 @@ class Router extends \PDO
         $routeExplode = explode('/', $route['path']);
         $routePath[] = array_splice($routeExplode, 1, count($routeExplode)-1);
 
-      }
-    }
+   
 
     $counter = max($routePath);
     $routingPath = NULL;
@@ -136,16 +141,14 @@ class Router extends \PDO
                 }
             }
         }
-        else
-        {
-            self::$Params = $URLparams;
-        }
       }
     }
+  }
+}
 
     if($match == false)  
     {
-      if(!empty(self::$DefaultRoute)) 
+      if(!empty(self::$DefaultRoute) && self::$REQ_ROUTE === '/') 
       {
         foreach(self::$Routes as $route) 
         {
@@ -154,6 +157,15 @@ class Router extends \PDO
             self::Redirect($route['path']);
           }
         }
+      }
+      if(file_exists(self::$ViewFolder . 'Error' . DS . '404.view.php'))
+      {
+        self::Redirect(self::$errorPagePath . '/404' . $path); 
+      }
+      else
+      {
+          header("HTTP/1.0 404 Not Found");
+          exit;
       }
     } else if($match == true)
     {
