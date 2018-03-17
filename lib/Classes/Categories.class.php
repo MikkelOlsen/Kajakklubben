@@ -26,6 +26,11 @@ class Categories extends Database
         return (new self)->query("SELECT * FROM kajaktypes")->fetchAll();
     }
 
+    public static function DeleteCheck(string $ID) : array
+    {
+        return (new self)->query("SELECT * FROM kajaks WHERE fkKajakType = :ID", [':ID' => $ID])->fetchAll();
+    }
+
     public static function CurrentCategory(string $ID) : object
     {
         return (new self)->query("SELECT * FROM kajaktypes WHERE kajakTypeId = :ID",[':ID' => $ID])->fetch();
