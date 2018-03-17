@@ -67,13 +67,15 @@
 
     
     <div class="create-news">
-            <h2>Rediger Arrangement</h2>
     <form method="post" enctype="multipart/form-data">
         <?= Token::createTokenInput() ?>
-        <input type="text" name="eventTitle" placeholder="Nyheds Titel" value="<?= $CurrentEvent->eventTitle ?>">
+        <label for="eventTitle">Arrangemenets Titel</label>
+        <input type="text" name="eventTitle" placeholder="Arrangemenets Titel" value="<?= $CurrentEvent->eventTitle ?>">
         <?= @$error['eventTitle'] ?>
-        <input name="startDate" class="datePicker" type="text" placeholder="Nyheds Start dato" value="<?= $startDate ?>">
+        <label for="startDate">Arrangemenets Start Dato</label>
+        <input name="startDate" class="datePicker" type="text" placeholder="Arrangemenets Start dato" value="<?= $startDate ?>">
         <?= @$error['startDate'] ?>
+        <label for="eventMessage">Arrangemenets Beskrivelse</label>
         <textarea name="eventMessage" class="editor" ><?= $CurrentEvent->eventDescription ?></textarea>
         <?= @$error['content'] ?>
         <input type="file" name="files" id="file" class="inputfile" />

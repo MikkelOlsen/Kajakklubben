@@ -48,12 +48,16 @@
 <div class="create-news">
     <form method="post">
         <?= Token::createTokenInput() ?>
+        <label for="newsTitle">Nyhedens Titel</label>
         <input type="text" name="newsTitle" placeholder="Nyheds Titel" value="<?= $CurrentNews->newsTitle ?>">
         <?= @$error['newsTitle'] ?>
-        <input name="startDate" class="datePicker" type="text" placeholder="Nyheds Start dato" value="<?= $startDate ?>">
+        <label for="startDate">Nyhedens Start Dato</label>
+        <input name="startDate" class="datePicker" type="text" placeholder="Nyheds Start Dato" value="<?= $startDate ?>">
         <?= @$error['startDate'] ?>
-        <input name="endDate" class="datePicker" type="text" placeholder="Nyheds Slut dato" value="<?= $endDate ?>">
+        <label for="endDate">Nyhedens Slut Dato</label>
+        <input name="endDate" class="datePicker" type="text" placeholder="Nyheds Slut Dato" value="<?= $endDate ?>">
         <?= @$error['endDate'] ?>
+        <label for="newsMessage">Nyhedens Besked</label>
         <textarea name="newsMessage" class="editor" placeholder="Nyheds Besked"><?= $CurrentNews->newsContent ?></textarea>
         <?= @$error['content'] ?>
         <input name="newsSubmit" type="submit" value="Opdater Nyhed">

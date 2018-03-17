@@ -77,7 +77,7 @@
         <input type="file" name="files" id="file" class="inputfile" />
         <label for="file" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span>Klik for at vælge kajakkens billede.</span></label>
         <?= @$error['productMedia'] ?>
-        <input name="productSubmit" type="submit" value="Opret Arrangement">
+        <input name="productSubmit" type="submit" value="Opret Kajak">
         <?= @$status ?>
     </form>
 

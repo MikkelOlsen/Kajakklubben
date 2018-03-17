@@ -12,7 +12,7 @@
                 {
                     if(Categories::UpdateCategory($DATA, Router::GetParamByName('ID')) == true)
                     {
-                        $status = '<a id="successTooltip" href="'.Router::$BASE.'Admin/Kajak-Typer" class="success">Success</a>
+                        $status = '<a id="successTooltip" href="'.Router::$BASE.'Admin/Categories" class="success">Success</a>
                                   <div class="mdl-tooltip mdl-tooltip--large" data-mdl-for="successTooltip">Klik her for at komme tilbage til arrangementer.</div>';
                                   $currentCategory = Categories::CurrentCategory(Router::GetParamByName('ID'));
 
@@ -31,8 +31,10 @@
 <div class="create-news">
     <form method="post">
         <?= Token::createTokenInput() ?>
+        <label for="typeName">Kajak Type</label>
         <input type="text" name="typeName" placeholder="Kajak Typens Navn" value="<?= $currentCategory->kajakTypeName ?>">
         <?= @$error['typeName'] ?>
+        <label for="typeDiff">Sværhedsgrad</label>
         <input type="number" name="typeDiff" min="1" max="11" placeholder="Kajak Typens Sværhedsgrad (1-11)" value="<?= $currentCategory->kajakTypeLevel ?>">
         <?= @$error['typeDiff'] ?>
         <input name="typeSubmit" type="submit" value="Opdater Kajak Type">

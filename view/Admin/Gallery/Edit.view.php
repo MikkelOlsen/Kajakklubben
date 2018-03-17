@@ -101,8 +101,10 @@
     <a id="baseURL" style="display:hidden;" href="<?= Router::$BASE ?>"></a>
         <div class="create-news">
             <form method="post" enctype="multipart/form-data">
+                <label for="albumName">Albummets Navn</label>
                 <input type="text" name="albumName" placeholder="Albummets Navn" value="<?= $currentAlbum->albumName ?>">
                 <?= @$error['albumTitle'] ?>
+                <label for="event">Albummets arrangement (Valgfrit)</label>
                 <select name="event">
                     <?php
                         $select = false;

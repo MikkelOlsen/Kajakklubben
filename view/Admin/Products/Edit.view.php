@@ -54,12 +54,16 @@
 <div class="create-news">
     <form method="post" enctype="multipart/form-data">
         <?= Token::createTokenInput() ?>
+        <label for="productName">Kajak Navn</label>
         <input type="text" name="productName" placeholder="Nyheds Titel" value="<?= $currentProduct->kajakName ?>">
         <?= @$error['productName'] ?>
+        <label for="productStock">Kajak Antal</label>
         <input type="number" name="productStock" placeholder="Kajak antal" value="<?= $currentProduct->kajakStock ?>">
         <?= @$error['productStock'] ?>
+        <label for="productPrice">Kajak Pris</label>
         <input type="number" name="productPrice" placeholder="Kajak pris (Valgfri - Hvis til salg)" value="<?= $currentProduct->salesPrice ?>">
         <?= @$error['productPrice'] ?>
+        <label for="productType">Kajak Type</label>
         <select name="productType">
             <?php
                 foreach(Categories::GetAllCategories() as $category) 
@@ -75,7 +79,7 @@
         <input type="file" name="files" id="file" class="inputfile" />
         <label for="file" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span>Klik for at vælge kajakkens billede.</span></label>
         <?= @$error['productMedia'] ?>
-        <input name="productSubmit" type="submit" value="Opret Arrangement">
+        <input name="productSubmit" type="submit" value="Opret Kajakken">
         <?= @$status ?>
     </form>
 
