@@ -186,3 +186,44 @@ body {
 .gallery-edit .album_cover {
     border: 2px solid green;
 }
+
+
+div.contactMsg {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.contactMsg .msg {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.mdl-button {
+    margin-bottom: 10px;
+}
+
+.user-create > form {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+.user-create > form label, .user-create > form > input[type=submit], .user-create .file-error {
+    grid-column: 1/3;
+}
+
+.user-create > form > div .error {
+    font-size: 12px;
+    padding: 5px;
+}
+
+.user-create .success {
+    margin-top: 10px;
+    grid-column: 1/3;
+}
+
+tbody > tr > th {
+    font-weight: 200 !important;
+}

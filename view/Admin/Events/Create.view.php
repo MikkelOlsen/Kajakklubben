@@ -59,9 +59,9 @@
 <div class="create-news">
     <form method="post" enctype="multipart/form-data">
         <?= Token::createTokenInput() ?>
-        <input type="text" name="eventTitle" placeholder="Nyheds Titel" value="<?= @$POST['eventTitle'] ?>">
+        <input type="text" name="eventTitle" placeholder="Arragement Titel" value="<?= @$POST['eventTitle'] ?>">
         <?= @$error['eventTitle'] ?>
-        <input name="startDate" class="datePicker" type="text" placeholder="Nyheds Start dato" value="<?= @$POST['startDate'] ?>">
+        <input name="startDate" class="datePicker" type="text" placeholder="Arragementets Start dato" value="<?= @$POST['startDate'] ?>">
         <?= @$error['startDate'] ?>
         <textarea name="eventMessage" class="editor" ><?= isset($POST['eventMessage']) ? $POST['eventMessage'] : 'Arrangement Beskrivelse' ?></textarea>
         <?= @$error['content'] ?>

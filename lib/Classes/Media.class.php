@@ -112,13 +112,13 @@ class Media extends Database
         }
     }
 
-    public static function ImageUploader(array $infoArray)
-    {
+    public static function ImageUploader(array $infoArray) : object
+    { 
         $file = (new self)->query("INSERT INTO `media`(`filepath`, `filename`, `mime`) VALUES (:filepath, :filename, :mime)", [':filepath' => $infoArray['filePath'], ':filename' => $infoArray['fileName'], ':mime' => $infoArray['mime']]);
         return (new self)->query("SELECT mediaId FROM media WHERE filename = :FILENAME", [':FILENAME' => $infoArray['fileName']])->fetch();
     }
 
-    public static function UnlinkImage($mediaId, $delete = false)
+    public static function UnlinkImage($mediaId, $delete = false) : bool
     {
         try {
             $infoArray = (new self)->query("SELECT * FROM media WHERE mediaId = :id", [':id' => $mediaId])->fetch();
@@ -139,9 +139,10 @@ class Media extends Database
         return false;
     }
 
-    public static function UpdateImg(array $files, array $options = [])
+    public static function UpdateImg(array $files, array $options = [], $crop = false) : bool
     {
-           $infoArray = self::ImageHandler($files, $options);
+           $infoArray = self::ImageHandler($files, $options, $crop);
+           var_dump($crop);
            if(array_key_exists('filePath', $infoArray)) 
            {
            try {

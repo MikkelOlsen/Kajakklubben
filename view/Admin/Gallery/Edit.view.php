@@ -147,7 +147,7 @@
                 $a = '<a class="delLink"><i class="material-icons top-left current">check_circle</i></a>';
                 if($galleryImage->fkGalleryMediaId !== $currentAlbum->albumCoverId) 
                 {
-                    $a = '<a class="delLink" href="' . $galleryImage->galleryId . '"><i class="material-icons top-left remove">remove_circle</i></a>';
+                    $a = '<a class="delLink" href="' . $galleryImage->fkGalleryMediaId . '"><i class="material-icons top-left remove">remove_circle</i></a>';
                     $border = '';
                 }
                 echo '<div class="album">';

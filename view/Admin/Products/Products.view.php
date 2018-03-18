@@ -37,8 +37,13 @@
             } else {
                 echo '<tr>';
                 echo '<td class="mdl-data-table__cell--non-numeric">Der er ingen produkter til <b>'.$category->kajakTypeName.'</b></td>';
+                echo '<td></td>';
+                echo '<td></td>';
+                echo '<td></td>';
+                echo '<td></td>';
+                echo '<td></td>';
+                echo '<td></td>';
                 echo '</tr>';
-                echo '<tr></tr>';
             }
         }
         

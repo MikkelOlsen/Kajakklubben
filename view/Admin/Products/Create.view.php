@@ -55,7 +55,7 @@
 <div class="create-news">
     <form method="post" enctype="multipart/form-data">
         <?= Token::createTokenInput() ?>
-        <input type="text" name="productName" placeholder="Nyheds Titel" value="<?= @$POST['productName'] ?>">
+        <input type="text" name="productName" placeholder="Produkt Navn" value="<?= @$POST['productName'] ?>">
         <?= @$error['productName'] ?>
         <input type="number" name="productStock" placeholder="Kajak antal" value="<?= @$POST['productStock'] ?>">
         <?= @$error['productStock'] ?>

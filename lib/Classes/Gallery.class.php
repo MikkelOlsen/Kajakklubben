@@ -45,11 +45,16 @@ class Gallery extends Database
         return (new self)->query("SELECT * FROM albums")->fetchAll();
     }
 
-    public static function DeleteSingleImage(string $ID) : object
+    public static function DeleteSingleImage(string $ID) : bool
     {
-        $mediaId = (new self)->query("SELECT fkGalleryMediaId FROM gallery WHERE galleryId = :ID", [':ID' => $ID])->fetch();
-        (new self)->query("DELETE FROM gallery WHERE galleryId = :ID", [':ID' => $ID]);
-        return $mediaId;
+        try
+        {
+            (new self)->query("DELETE FROM gallery WHERE fkGalleryMediaId = :ID", [':ID' => $ID]);
+            return true;
+        } catch(PDOException $e)
+        {
+            return false;
+        }
     }
 
     public static function DeleteAlbum(string $ID, string $BASE) : array
@@ -110,6 +115,22 @@ class Gallery extends Database
                                ':EVENTID' => $ID
                            ]);
         return true;
+    }
+
+    public static function CoverCheck(string $ID) : bool
+    {
+        $returnarray = (new self)->query("SELECT albums.albumCoverId, events.eventCover 
+                                    FROM media 
+                                    LEFT JOIN albums
+                                    ON media.mediaId = albums.albumCoverId
+                                    LEFT JOIN events	
+                                    ON media.mediaId = events.eventCover
+                                    WHERE media.mediaId = :ID", [':ID' => $ID])->fetch();
+        if($returnarray->albumCoverId == NULL && $returnarray->eventCover == NULL)
+        {
+            return true;
+        }
+        return false;
     }
 
 }

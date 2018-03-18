@@ -62,7 +62,4 @@ class News extends Database
         return (new self)->query("SELECT `newsId`,`newsTitle`, `newsContent`, `newsStartDate` FROM `news` WHERE DATE(NOW()) between `newsStartDate` AND `newsEndDate`ORDER BY `newsStartDate` DESC")->fetchAll();
     }
 
-    
-
-
 }

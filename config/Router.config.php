@@ -209,8 +209,45 @@
       'layout' => 'Api'
     ],
     [
+      'path' => '/Admin/Contact',
+      'view' => 'Admin'.DS.'Contact'.DS.'Contact.view.php',
+      'layout' => 'Admin',
+      'title' => 'Kontakt Beskeder'
+    ],
+    [
+      'path' => '/Admin/Contact/Delete',
+      'view' => 'Admin'.DS.'Contact'.DS.'Delete.view.php',
+      'layout' => 'Admin',
+      'params' => ['ID']
+    ],
+    [
       'path' => '/Soeg',
       'view' => 'Frontend'.DS.'Search.view.php',
+    ],
+    [
+      'path' => '/Admin/Users',
+      'view' => 'Admin'.DS.'Users'.DS.'Users.view.php',
+      'layout' => 'Admin',
+      'title' => 'Bruger'
+    ],
+    [
+      'path' => '/Admin/Users/Create',
+      'view' => 'Admin'.DS.'Users'.DS.'Create.view.php',
+      'layout' => 'Admin',
+      'title' => 'Opret Bruger'
+    ],
+    [
+      'path' => '/Admin/Users/Edit',
+      'view' => 'Admin'.DS.'Users'.DS.'Edit.view.php',
+      'layout' => 'Admin',
+      'params' => ['ID'],
+      'title' => 'Rediger Bruger'
+    ],
+    [
+      'path' => '/Admin/Users/Delete',
+      'view' => 'Admin'.DS.'Users'.DS.'Delete.view.php',
+      'layout' => 'Admin',
+      'params' => ['ID']
     ]
   );
 ?>

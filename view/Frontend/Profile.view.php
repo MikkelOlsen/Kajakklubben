@@ -1,3 +1,12 @@
+<?php
+
+if(Permission::LoginCheck() == false)
+{
+    Router::Redirect('/Logind');
+}
+
+?>
+
 <div class="profile">
     <h2>Min side</h2>
     <img src="./assets/images/profile_placeholder.jpg" alt="">

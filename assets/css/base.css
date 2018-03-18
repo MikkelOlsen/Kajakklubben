@@ -619,6 +619,12 @@ form.search input {
     grid-template-rows: 1fr;
 }
 
+.contact-form form p {
+    color:red; 
+    font-size: 12px;
+    padding: 0px 20px;
+}
+
 .contact-form h2 {
     margin-bottom: 20px;
 }
@@ -627,12 +633,12 @@ form.search input {
     margin-top: 25px;
     width: 50%;
     justify-self: center;
-}
+}   
 
 .contact-form form input, .contact-form form textarea {
     width: 100%;
     padding: 12px 20px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     border: none;
     font-family: 'Bitter', serif;
     font-size: 13px;
@@ -759,7 +765,7 @@ form.search input {
     }
 
     .gallery > .albums {
-        grid-template: repeat(6, 1fr) / repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .boats-table, .boats-table thead, .boats-table tbody, .boats-table th, .boats-table td, .boats-table tr { 
