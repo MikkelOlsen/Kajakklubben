@@ -5,7 +5,16 @@
         <a class="link <?=Router::IsActive('/Galleri', 'active')?>" href="<?= Router::$BASE . 'Galleri' ?>">Galleri</a>
         <a class="link <?=Router::IsActive('/Baadpark', 'active')?>" href="<?= Router::$BASE . 'Baadpark' ?>">Bådpark</a>
         <a class="link <?=Router::IsActive('/Bliv-Medlem', 'active')?>" href="<?= Router::$BASE . 'Bliv-Medlem' ?>">Bliv Medlem</a>
-        <a class="link <?=Router::IsActive('/Min-Side', 'active')?>" href="<?= Router::$BASE . 'Min-Side' ?>">Min Side</a>
+        <?php
+          if(Permission::LoginCheck() == true)
+          {
+            echo '<a class="link '.Router::IsActive('/Min-Side', 'active').'" href="'. Router::$BASE . 'Min-Side">Min Side</a>';
+          } else 
+          {
+            echo '<a class="link '.Router::IsActive('/Login', 'active').'" href="'. Router::$BASE . 'Login">Login</a>';
+          } 
+
+        ?>
         <a class="link <?=Router::IsActive('/Kontakt', 'active')?>" href="<?= Router::$BASE . 'Kontakt' ?>">Kontakt</a>
 </nav>
 

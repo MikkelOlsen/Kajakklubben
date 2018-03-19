@@ -1,8 +1,11 @@
 var lightbox = new Lightbox();
 lightbox.load();
 
+var elementExists = document.getElementById('newsletter');
 
-document.getElementById('newsletter').addEventListener('submit', (elm) => {
+if(elementExists !== null)
+{
+elementExists.addEventListener('submit', (elm) => {
     elm.preventDefault();
     const baseURL = document.getElementById('baseURL').getAttribute('href');
     const email = document.getElementById('newsletterEmail').value;
@@ -27,3 +30,49 @@ document.getElementById('newsletter').addEventListener('submit', (elm) => {
         })
 
 })
+}
+
+
+document.querySelectorAll('.eventSub').forEach( (elm) => {
+	elm.addEventListener('click', (e) => {
+		e.preventDefault();
+        const baseURL = document.getElementById('baseURL').getAttribute('href');
+        var attr = elm.getAttribute('href');
+
+		fetch(baseURL + 'Api/Event/' + attr, {method: 'GET', body: undefined})
+			.then( (res) => {
+				return res.json()
+			})
+			.then( (data) => {
+				if(!data.err)
+				{
+                    elm.parentElement.innerHTML = '<p style="color:green;">Du er nu tilmeldt denne begivenhed.</p>';
+                }
+			})
+			.catch( (err) => {
+				console.warn('Fejl i fetch! -> ', err)
+			})
+	});
+});
+
+document.querySelectorAll('.eventNoSub').forEach( (elm) => {
+	elm.addEventListener('click', (e) => {
+		e.preventDefault();
+        const baseURL = document.getElementById('baseURL').getAttribute('href');
+        var attr = elm.getAttribute('href');
+
+		fetch(baseURL + 'Api/EventDelete/' + attr, {method: 'GET', body: undefined})
+			.then( (res) => {
+				return res.json()
+			})
+			.then( (data) => {
+				if(!data.err)
+				{
+                    elm.parentElement.innerHTML = '<p style="color:yellow;">Du er nu afmeldt denne begivenhed.</p>';
+                }
+			})
+			.catch( (err) => {
+				console.warn('Fejl i fetch! -> ', err)
+			})
+	});
+});

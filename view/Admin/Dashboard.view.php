@@ -1,1 +1,1 @@
-<h1>Admin Dashboard</h1>
+<h3>Velkommen - <?= $_SESSION['USER']['FULLNAME'] ?></h3>

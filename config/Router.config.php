@@ -49,7 +49,7 @@
       'view' => 'Frontend'.DS.'Contact.view.php'
     ],
     [
-      'path' => '/Logind',
+      'path' => '/Login',
       'view' => 'General'.DS.'Login.view.php'
     ],
     [
@@ -228,7 +228,7 @@
       'path' => '/Admin/Users',
       'view' => 'Admin'.DS.'Users'.DS.'Users.view.php',
       'layout' => 'Admin',
-      'title' => 'Bruger'
+      'title' => 'Bruger liste'
     ],
     [
       'path' => '/Admin/Users/Create',
@@ -248,6 +248,18 @@
       'view' => 'Admin'.DS.'Users'.DS.'Delete.view.php',
       'layout' => 'Admin',
       'params' => ['ID']
+    ],
+    [
+      'path' => '/Api/Event',
+      'view' => 'Api'.DS.'Event.view.php',
+      'params' => ['ID', 'USER'],
+      'layout' => 'Api'
+    ],
+    [
+      'path' => '/Api/EventDelete',
+      'view' => 'Api'.DS.'EventDelete.view.php',
+      'params' => ['ID', 'USER'],
+      'layout' => 'Api'
     ]
   );
 ?>

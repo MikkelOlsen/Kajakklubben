@@ -47,7 +47,7 @@ if(isset($POST['userSubmit']))
             );
             if($_FILES['files']['size'] !== 0)
             {
-                $MediaId = Media::UpdateImg($_FILES['files'], $options);
+                $MediaId = Media::UpdateImg($_FILES['files'], $options, true);
             }
             if(Users::UpdateUser($DATA, Router::GetParamByName('ID')) == true)
             {
@@ -64,7 +64,6 @@ if(isset($POST['userSubmit']))
 }
 
 ?>
-
 <div class="create-news user-create">
     <form method="post" enctype="multipart/form-data">
         <?= Token::createTokenInput() ?>
@@ -103,7 +102,7 @@ if(isset($POST['userSubmit']))
         <input type="file" name="files" id="file" class="inputfile" />
         <label for="file" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span>Klik for at vælge brugerens billede.</span></label>
         <?= @$error['userAvatar'] ?>
-        <input name="userSubmit" type="submit" value="Opret Bruger">
+        <input name="userSubmit" type="submit" value="Opdater Bruger">
         <?= @$status ?>
     </form>
     <img src="<?= Router::$BASE . $currentUser->filepath ?>/150x150_<?= $currentUser->filename ?>.<?= $currentUser->mime ?>" alt="">

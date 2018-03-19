@@ -85,7 +85,7 @@ class Users extends Database
 
     public static function AllUsers() : array
     {
-        return (new self)->query("SELECT userId, username, fullname, userroles.roleName, userEmail, userKm, media.filename, media.filepath, media.mime FROM `users`
+        return (new self)->query("SELECT userId, username, fullname, userroles.roleName, userroles.roleLevel, userEmail, userKm, media.filename, media.filepath, media.mime FROM `users`
                                 INNER JOIN userroles
                                 ON users.userRole = userroles.roleId
                                 INNER JOIN media
@@ -108,5 +108,62 @@ class Users extends Database
                                     INNER JOIN media
                                     ON users.avatar = media.mediaId
                                     WHERE userId = :ID", [':ID' => $ID])->fetch();
+    }
+
+    public static function CurrentUserImage() : object
+    {
+        return (new self)->query("SELECT * FROM media WHERE mediaId = :ID", [':ID' => $_SESSION['USER']['AVATAR']])->fetch();
+    }
+
+    public static function CurrentUserLevel() : object
+    {
+        return (new self)->query("SELECT userLevelName
+                                    FROM userlevels
+                                    WHERE userLevelReqKm = (SELECT MAX(userLevelReqKm) FROM userlevels WHERE userLevelReqKm <= :USERKM)", [':USERKM' => $_SESSION['USER']['USERKM']])->fetch();
+    }
+
+    public static function CurrentUserEvents() : array
+    {
+        return (new self)->query("SELECT eventTitle, eventStartDate 
+                                    FROM eventsubscribers
+                                    INNER JOIN events 
+                                    ON eventsubscribers.fkEventId = events.eventsId
+                                    WHERE DATE(NOW()) <= `eventStartDate`
+                                    AND fkEventSubUserId = :ID
+                                    ORDER BY `eventStartDate` DESC", [':ID' => $_SESSION['USER']['USERID']])->fetchAll();
+    }
+
+    public static function SignEvent(string $ID, string $USER) : bool
+    {
+        try
+        {
+            (new self)->query("INSERT INTO eventsubscribers (fkEventSubUserId, fkEventId) VALUES (:USER, :EVENT)", [':USER' => $USER, ':EVENT' => $ID]);
+            return true;
+        } catch(PDOException $e)
+        {
+            return false;
+        }
+    }
+
+    public static function OutEvent(string $ID, string $USER) : bool
+    {
+        try
+        {
+            (new self)->query("DELETE FROM eventsubscribers WHERE fkEventSubUserID = :USER AND fkEventID = :EVENT", [':USER' => $USER, ':EVENT' => $ID]);
+            return true;
+        } catch(PDOException $e)
+        {
+            return false;
+        }
+    }
+
+    public static function UserEventCheck(string $ID) : bool
+    {
+        $userData = (new self)->query("SELECT * FROM eventsubscribers WHERE fkEventSubUserId = :USER AND fkEventId = :EVENT", [':USER' => $_SESSION['USER']['USERID'], ':EVENT' => $ID])->fetch();
+        if($userData !== false)
+        {
+            return false;
+        }
+        return true;
     }
 }

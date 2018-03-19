@@ -54,7 +54,6 @@
     }
 ?>
 
-<h2>Opret Arrangement</h2>
 
 <div class="create-news">
     <form method="post" enctype="multipart/form-data">

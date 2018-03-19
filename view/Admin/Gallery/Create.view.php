@@ -74,7 +74,6 @@ if(isset($POST['submit'])) {
 
     }
 ?>
-<h2>Opret Galleri</h2>
 
 <div class="create-news">
 

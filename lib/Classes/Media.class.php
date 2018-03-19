@@ -18,23 +18,34 @@ class Media extends Database
             $ext = strtolower(pathinfo($files['name'], PATHINFO_EXTENSION));
             if(in_array($ext, $validExts)) {
                 list($w, $h) = getimagesize($files['tmp_name']);
-
+                $x = 0;
+                $y = 0;
                 $ratio = $w / $h;
                 $fileName = $width.'x'.$height.'_'.$uniqueName.'.'.$ext;
                 $path = $options['path'].'/'.$fileName;
 
                 if($crop) {
-                    if($w > $h)
-                    {
-                        $w = ceil($w-($w*abs($ratio-$width/$height)));
-                    } else 
-                    {
-                        $h = ceil($h-($h*abs($ratio-$height/$height)));
+                    $ratio = $width / $w;       //try max width first...
+                    $newWidth = $width;
+                    $newHeight = $h * $ratio;  
+                    if ($newHeight < $height) {  //if that created an image smaller than what we wanted, try the other way
+                        $ratio = $height / $h;
+                        $newHeight = $height;
+                        $newWidth = $w * $ratio;
                     }
-                    $newWidth = $w;
-                    $newHeight = $h;
+                    elseif ($newHeight > $height) { //crop vertically
+                        $extra = $newHeight - $height;
+                        $x = 0; //source x
+                        $y = round($extra / 2); //source y
+                    }
+                    else {
+                        $extra = $newWidth - $width;
+                        $x = round($extra / 2); //source x
+                        $y = 0; //source y
+                    }
                 } else 
                 {
+
                     if($width/$height > $ratio) {
                         $newWidth = $height*$ratio;
                         $newHeight = $height;
@@ -52,7 +63,7 @@ class Media extends Database
                         $tmp = imagecreatetruecolor($newWidth, $newHeight);
                         imagecopyresampled($tmp, $image,
                         0, 0,
-                        0, 0,
+                        $x, $y,
                         $newWidth, $newHeight,
                         $w, $h);
                         imagejpeg($tmp, $path, 100);
@@ -63,7 +74,7 @@ class Media extends Database
                         $tmp = imagecreatetruecolor($newWidth, $newHeight);
                         imagecopyresampled($tmp, $image,
                         0, 0,
-                        0, 0,
+                        $x, $y,
                         $newWidth, $newHeight,
                         $w, $h);
                         imagepng($tmp, $path, 0);
@@ -74,7 +85,7 @@ class Media extends Database
                         $tmp = imagecreatetruecolor($newWidth, $newHeight);
                         imagecopyresampled($tmp, $image,
                         0, 0,
-                        0, 0,
+                        $x, $y,
                         $newWidth, $newHeight,
                         $w, $h);
                         imagegif($tmp, $path);

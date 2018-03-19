@@ -11,9 +11,17 @@ class Permission extends Database
             [
                 ':USERNAME' => $DATA['username']
             ])->fetch();
-            if(password_verify($DATA['password'], $PASSWORD->password))
+            if($PASSWORD !== false)
             {
-                return true;
+                if(password_verify($DATA['password'], $PASSWORD->password))
+                {
+                    if(self::SesssionSet($DATA['username']) == true)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
             }
             return false;
         } 
@@ -23,28 +31,64 @@ class Permission extends Database
         }
     }
 
+    public static function Logout() : bool
+    {
+        try
+        {
+            unset($_SESSION['USER']);
+            return true;
+        } catch(PDOException $e)
+        {
+            return false;
+        }
+    }
+
+    private static function SesssionSet(string $USERNAME) : bool
+    {
+        $USERDATA = (new self)->query("SELECT userId, fullname, userRole, userEmail, userKm, avatar
+                            FROM `users`
+                            INNER JOIN userroles
+                            ON users.userRole = userroles.roleId
+                            WHERE username = :USERNAME", [':USERNAME' => $USERNAME])->fetch();
+        if($USERDATA !== false)
+        {
+            $_SESSION['USER'] = [
+                'USERID' => $USERDATA->userId,
+                'AVATAR' => $USERDATA->avatar,
+                'FULLNAME' => $USERDATA->fullname,
+                'USERROLE' => $USERDATA->userRole,
+                'USEREMAIL' => $USERDATA->userEmail,
+                'USERKM' => $USERDATA->userKm
+            ];
+            return true;
+        }
+        return false;
+    }
+
     public static function LoginCheck() : bool
     {
-        if(isset($_SESSION['user']['username']) && isset($_SESSION['user']['userId']) && isset($_SESSION['user']['userEmail']) && isset($_SESSION['user']['fullname']) && isset($_SESSION['user']['userRole']) && isset($_SESSION['user']['userKm']))
+        if(isset($_SESSION['USER']))
         {
-            $err = 0;
-            for($i=0;$i<count($_SESSION['user']);$i++)
-            {
-                $sql = "SELECT ".$_SESSION['user'][$i]." FROM users WHERE ".$_SESSION['user'][$i]." = :".strtoupper($_SESSION['user'][$i])."";
-                $userData = (new self)->query($sql, [':'.strtoupper($_SESSION['user'][$i]) => $_SESSION['user'][$i]])->fetch();
-                if(sizeof($userData) !== 1)
-                {
-                    $err++;
-                }
-            }
-            if($err == 0)
+            $USERDATA = (new self)->query("SELECT userId FROM users WHERE userId = :USERID", [':USERID' => $_SESSION['USER']['USERID']])->fetchAll();
+            if(sizeof($USERDATA) == 1)
             {
                 return true;
             }
-            else 
+            return false;
+        } 
+        return false;
+    }
+
+    public static function LevelCheck(string $REQLEVEL) : bool
+    {
+        if(self::LoginCheck() == true)
+        {
+            $USERLEVEL = (new self)->query("SELECT roleLevel FROM userroles WHERE roleId = :ID", [':ID' => $_SESSION['USER']['USERROLE']])->fetch();
+            if($USERLEVEL->roleLevel >= $REQLEVEL)
             {
-                return false;
+                return true;
             }
+            return false;
         }
         return false;
     }

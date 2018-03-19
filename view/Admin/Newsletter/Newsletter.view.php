@@ -1,4 +1,3 @@
-<h3>Tilmeldte til nyhedsbrev</h3>
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>

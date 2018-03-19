@@ -1,1 +1,1 @@
-<h1>Kajakklubben Pagaj / Administration / <?= Router::$Title ?></h1>
+<h1>Kajakklubben Pagaj / Administration</h1>

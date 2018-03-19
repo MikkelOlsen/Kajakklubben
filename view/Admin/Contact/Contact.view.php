@@ -1,4 +1,3 @@
-<h3>Beskeder fra brugere.</h3>
 
 <div class="contactMsg">
     <?php

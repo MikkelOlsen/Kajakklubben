@@ -43,6 +43,7 @@ document.querySelectorAll('.delLink').forEach( (elm) => {
 			.then( (data) => {
 				if(!data.err)
 				{
+					console.log(data)
 					elm.parentElement.remove()
 				}
 			})

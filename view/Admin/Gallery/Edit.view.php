@@ -97,7 +97,6 @@
 
 <div class="gallery-edit">
     <div class="form">
-    <h2>Rediger Albummet - <i><?= $currentAlbum->albumName ?></i> </h2>
     <a id="baseURL" style="display:hidden;" href="<?= Router::$BASE ?>"></a>
         <div class="create-news">
             <form method="post" enctype="multipart/form-data">

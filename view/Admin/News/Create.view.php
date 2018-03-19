@@ -33,7 +33,6 @@
 ?>
 
 
-<h2>Opret Nyhed</h2>
 
 <div class="create-news">
     <form method="post">

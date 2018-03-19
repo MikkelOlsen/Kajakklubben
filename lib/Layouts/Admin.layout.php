@@ -18,6 +18,7 @@
         <main class="main">
         <?php require_once __ROOT__ . DS . 'includes' . DS . 'admin-nav.php'; ?>
             <div class="main-content">
+                <h3><?= Router::$Title ?></h3>
                     <?php require_once Router::$View; ?>
                 </div>
             </div>

@@ -49,6 +49,9 @@ body {
 /* News styling */
 
 
+div.form {
+    padding-top: 40px;
+}
 
 .create-news {
     padding: 10px;
@@ -203,8 +206,14 @@ div.contactMsg {
     margin-bottom: 10px;
 }
 
+.user-create {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 50px;
+}
+
 .user-create > form {
-    width: 60%;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;

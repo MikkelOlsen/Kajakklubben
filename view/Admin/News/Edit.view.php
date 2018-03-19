@@ -43,7 +43,6 @@
 ?>
 
 
-<h2>Opdater Nyhed</h2>
 
 <div class="create-news">
     <form method="post">

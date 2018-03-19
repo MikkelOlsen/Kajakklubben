@@ -9,7 +9,7 @@ if(isset($POST['userSubmit']))
         {
         $DATA['username'] = Validate::stringBetween($POST['username'], 2, 45) ? $POST['username'] : $error['username'] = '<div class="error">Brugernavnet må kun inholde bogstaver og tal. Samt være mellem 2 og 45 tegn.</div>';
         }
-        $DATA['password'] = Validate::mixedBetween($POST['password'], 5, 60) ? $POST['password'] : $error['password'] = '<div class="error">Adgangskoden må kun være mellem 5 og 60 tegn.</div>';
+        $DATA['password'] = Validate::mixedBetween($POST['password'], 4, 60) ? $POST['password'] : $error['password'] = '<div class="error">Adgangskoden må kun være mellem 5 og 60 tegn.</div>';
         $DATA['fullName'] = Validate::characters($POST['fullName'], 5, 45) ? $POST['fullName'] : $error['fullName'] = '<div class="error">Det fulde navn må kun inholde bogstaver. Samt være mellem 5 og 45 tegn.</div>';
         $DATA['email'] = Validate::email($POST['email']) ? $POST['email'] : $error['email'] = '<div class="error">Dette er ikke en gyldig email.</div>';
         $DATA['userRole'] = ($POST['userRole'] >= 1 && $POST['userRole'] <= 3) ? $POST['userRole'] : $error['userRole'] = '<div class="error">Ugyldigt valgt af bruger rolle.</div>';
