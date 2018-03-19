@@ -1,4 +1,8 @@
 <?php 
+if(Permission::LevelCheck(90) == false)
+{
+    Router::Redirect('/Admin');
+}
 $events = Events::GetAllEventsByDateReverse();
 if(isset($POST['submit'])) {
         $eventId = null;

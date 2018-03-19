@@ -86,7 +86,15 @@ if(isset($POST['userSubmit']))
         <div>
             <select name="userRole" id="userRole">
                 <?php
-                    foreach(Users::UserRoles() as $role)
+                if(Permission::LevelCheck(90) == true)
+                {
+                    $LEVEL = '90';
+                }
+                else 
+                {
+                    $LEVEL = '50';
+                }
+                    foreach(Users::UserRoles($LEVEL) as $role)
                     {
                         $selected = ($role->roleId == $currentUser->userRole) ? 'selected' : '';
                         echo '<option '.$selected.' value="'.$role->roleId.'">'.$role->roleName.'</option>';

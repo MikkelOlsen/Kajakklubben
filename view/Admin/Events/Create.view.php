@@ -1,5 +1,8 @@
 <?php
-    
+    if(Permission::LevelCheck(90) == false)
+    {
+        Router::Redirect('/Admin');
+    }
     if(isset($POST['eventSubmit']))
     {
         if(Token::validateToken($POST['_once_default']) == true) {

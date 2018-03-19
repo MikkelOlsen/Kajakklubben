@@ -1,4 +1,8 @@
 <?php
+if(Permission::LevelCheck(90) == false)
+{
+    Router::Redirect('/');
+}
     if(Router::GetParamByName('DELID') !== NULL)
     {
         if(Gallery::CoverCheck(Router::GetParamByName('DELID')) == true)

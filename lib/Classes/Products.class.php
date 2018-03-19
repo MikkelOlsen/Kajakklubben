@@ -125,4 +125,15 @@ class Products extends Database
         return true;
     }
 
+    public static function GetAllSales() : array
+    {
+        return (new self)->query("SELECT kajaks.kajakId, kajaks.kajakName, kajaks.kajakStock, kajaks.fkKajakMedia, media.filename, media.filepath, media.mime, sales.salesPrice
+                                    FROM kajaks 
+                                    INNER JOIN media
+                                    ON kajaks.fkKajakMedia = media.mediaId
+                                    INNER JOIN sales
+                                    ON sales.salesKajakId = kajaks.kajakId
+                                    ORDER BY RAND() LIMIT 3")->fetchAll();
+    }
+
 }

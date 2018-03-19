@@ -1,4 +1,8 @@
 <?php
+if(Permission::LevelCheck(90) == false)
+{
+    Router::Redirect('/Admin');
+}
     if(isset($POST['newsSubmit'])) {
         if(Token::validateToken($POST['_once_default']) == true) {
             if(isset($POST['startDate']) && isset($POST['endDate']) && isset($POST['newsMessage']) && isset($POST['newsTitle']))

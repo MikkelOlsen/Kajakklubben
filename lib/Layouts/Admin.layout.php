@@ -1,3 +1,10 @@
+<?php
+    if(Permission::LevelCheck(50) == false)
+    {
+        Router::Redirect('/');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

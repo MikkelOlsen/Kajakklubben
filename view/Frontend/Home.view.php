@@ -24,8 +24,19 @@
             <img src="./assets/images/news.jpg" alt="">
             <div class="home-news-text">
                 <h2>Nyheder</h2>
-                <p>07/04 Nye kajakker til salg</p>
-                <p>15/02 Pagaj-medlemmer vinder...</p>
+                <?php $NEWS = News::GetAllNewsByDate();
+                if(sizeof($NEWS) > 0)
+                {
+                    for($i=0;$i<2;$i++)
+                    {
+                        echo '<p>'.strftime('%d/%m', strtotime($NEWS[$i]->newsStartDate)).' - '.preg_replace('/\s+?(\S+)?$/', ' ...', substr($NEWS[$i]->newsTitle, 0, 20)).'</p>';
+                    }
+                }
+                else
+                {
+                    echo '<p>Der er desværre ingen nyheder.</p>';
+                }
+                ?>
                 <a href="<?= Router::$BASE . 'Nyheder' ?>">Nyheder >></a>
             </div>
         </div>
@@ -33,30 +44,51 @@
             <input id="newsletterEmail" type="text" name="newsLetter" placeholder="Tilmeld dig til nyhedsbrevet">
         </form>
         <div class="home-news">
-            <img src="./assets/images/news.jpg" alt="">
+            <img src="./assets/images/img01.jpg" alt="">
             <div class="home-news-text">
-                <h2>Nyheder</h2>
-                <p>07/04 Nye kajakker til salg</p>
-                <p>15/02 Pagaj-medlemmer vinder...</p>
-                <a href="<?= Router::$BASE . 'Nyheder' ?>">Nyheder >></a>
+                <h2>2016</h2>
+                <p>Juli</p>
+                <?php $EVENT = Events::GetAllEventsByDate();
+                if(sizeof($EVENT) > 0)
+                {
+                    for($i=0;$i<2;$i++)
+                    {
+                        echo '<p>'.strftime('%m.', strtotime($EVENT[$i]->eventStartDate)).' '.preg_replace('/\s+?(\S+)?$/', ' ...', substr($EVENT[$i]->eventTitle, 0, 20)).'</p>';
+                    }
+                }
+                else 
+                {
+                    echo '<p>Der er desværre ingen arrangementer.</p>';
+                }
+                ?>
+                <a href="<?= Router::$BASE . 'Arrangementer' ?>">Arrangementer >></a>
             </div>
         </div>
     </div>
     <div class="home-products">
-        <h2>Brugte kajakker</h2>
-        <div class="home-products-box">
-            <div class="product">
-                <img src="./assets/images/kajak01.jpg" alt="">
-                <a href="" >Blå Kajak <br> 799 DKK</a>
-            </div>
-            <div class="product">
-                <img src="./assets/images/kajak02.jpg" alt="">
-                <a href="" >Blå Kajak <br> 799 DKK</a>
-            </div>
-            <div class="product">
-                <img src="./assets/images/kajak03.jpg" alt="">
-                <a href="" >Blå Kajak <br> 799 DKK</a>
-            </div>
-        </div>
+    <?php
+        $sales = Products::GetAllSales();
+        if(sizeof($sales) > 0)
+        {
+        echo '<h2>Brugte kajakker</h2>';
+        echo '<div class="home-products-box">';
+
+        
+            foreach($sales as $sale)
+            {
+                echo '<div class="product">';
+                echo '<img src="'.Router::$BASE. $sale->filepath . '/140x93_'.$sale->filename.'.'.$sale->mime.'" alt="'.$sale->kajakName.'">';
+                echo '<a href="'.Router::$BASE.'Baadpark" >'.$sale->kajakName.' <br> '.number_format($sale->salesPrice,0,",",".").' DKK</a>';
+                echo '</div>';
+            }
+        echo '</div>';
+        }
+        else 
+        {
+            echo '<h2>Vi har desværre ingen brugte kajakker.</h2>';
+        }
+        ?>
+            
+        
     </div>
 </div>

@@ -144,7 +144,6 @@ class Media extends Database
             }
             return true;
         } catch(PDOException $e) {
-            echo $e->getMessage();
             return false;
         }
         return false;
@@ -153,7 +152,6 @@ class Media extends Database
     public static function UpdateImg(array $files, array $options = [], $crop = false) : bool
     {
            $infoArray = self::ImageHandler($files, $options, $crop);
-           var_dump($crop);
            if(array_key_exists('filePath', $infoArray)) 
            {
            try {

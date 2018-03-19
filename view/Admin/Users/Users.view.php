@@ -26,7 +26,10 @@
                 if(Permission::LevelCheck($user->roleLevel))
                 {
                   echo '<td><a href="'.Router::$BASE.'Admin/Users/Edit/'.$user->userId.'"><i class="material-icons">mode_edit</i></td>';
-                  echo '<td><a href="'.Router::$BASE.'Admin/Users/Delete/'.$user->userId.'" class="delete"><i class="material-icons">delete</i></td>';
+                  if($user->userId !== $_SESSION['USER']['USERID'])
+                  {
+                    echo '<td><a href="'.Router::$BASE.'Admin/Users/Delete/'.$user->userId.'" class="delete"><i class="material-icons">delete</i></td>';
+                  }
                 }
                 echo '<tr>';
 

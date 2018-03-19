@@ -28,16 +28,22 @@ class Events extends Database
         return (new self)->query("SELECT * FROM events")->fetchAll();
     }
 
+    public static function AlbumCheck(string $ID) : array
+    {
+        return (new self)->query("SELECT albumId FROM albums WHERE albumEventId = :ID", [':ID' => $ID])->fetchAll();
+    }
+
     public static function DeleteEvent(string $ID) : object
     {
         $mediaId = (new self)->query("SELECT eventCover FROM events WHERE eventsId = :ID", [':ID' => $ID])->fetch();
+        (new self)->query("DELETE FROM eventsubscribers WHERE fkEventId = :ID", [':ID' => $ID]);
         (new self)->query("DELETE FROM events WHERE eventsId = :ID", [':ID' => $ID]);
         return $mediaId;
     }
 
     public static function CurrentEvent(string $ID) : object
     {
-        return (new self)->query("SELECT `eventsId`, `eventTitle`, `eventStartDate`, `eventDescription`, filename, filepath, mime FROM events 
+        return (new self)->query("SELECT `eventsId`, `eventTitle`, `eventStartDate`, `eventDescription`, filename, eventCover, filepath, mime FROM events 
                                  INNER JOIN media
                                  ON events.eventCover = media.mediaId
                                  WHERE eventsId = :ID", [':ID' => $ID])->fetch();

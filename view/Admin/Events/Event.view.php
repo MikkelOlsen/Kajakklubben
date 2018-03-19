@@ -1,3 +1,10 @@
+<?php
+if(Permission::LevelCheck(90) == false)
+{
+  Router::Redirect('/Admin');
+}
+?>
+
 <a href="<?= Router::$BASE . 'Admin/Events/Create' ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Opret Arrangement</a>
 
 <p style="color:orange">Arrangementet er ikke afholdt endnu.</p>

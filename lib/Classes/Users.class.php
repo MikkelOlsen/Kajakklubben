@@ -78,9 +78,9 @@ class Users extends Database
         }
     }
 
-    public static function UserRoles() : array
+    public static function UserRoles(string $LEVEL) : array
     {
-        return (new self)->query("SELECT * from userroles WHERE roleLevel <= 90")->fetchAll();
+        return (new self)->query("SELECT * from userroles WHERE roleLevel <= :LEVEL", [':LEVEL' => $LEVEL])->fetchAll();
     }
 
     public static function AllUsers() : array

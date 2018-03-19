@@ -223,6 +223,7 @@
     [
       'path' => '/Soeg',
       'view' => 'Frontend'.DS.'Search.view.php',
+      'params' => ['PAGE']
     ],
     [
       'path' => '/Admin/Users',

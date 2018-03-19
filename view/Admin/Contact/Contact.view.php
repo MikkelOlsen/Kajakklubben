@@ -1,4 +1,9 @@
-
+<?php
+if(Permission::LevelCheck(90) == false)
+{
+    Router::Redirect('/Admin');
+}
+?>
 <div class="contactMsg">
     <?php
         foreach(Contact::GetAllMessages() as $message)

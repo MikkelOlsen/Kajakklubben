@@ -5,9 +5,15 @@ class Gallery extends Database
 
     public static function GetAllCoversByDate() : array
     {
-        return (new self)->query("SELECT `albumId`, `albumName`, filename, filepath, mime FROM `albums`
-                                  INNER JOIN media
-                                  ON albums.albumCoverId = media.mediaId")->fetchAll();
+        return (new self)->query("SELECT `albumId`, `albumName`, eventTitle, eventCover, M1.filename as ALBUMFILE, M1.filepath as ALBUMPATH, M1.mime as ALBUMMIME,
+                                  M2.filename as EVENTFILE, M2.filepath as EVENTPATH, M2.mime as EVENTMIME
+                                  FROM `albums`
+                                  INNER JOIN media M1
+                                  ON albums.albumCoverId = M1.mediaId
+                                  LEFT JOIN events 
+                                  ON albumEventId = events.eventsId
+                                  LEFT JOIN media M2
+                                  ON events.eventCover = M2.MediaId")->fetchAll();
     }
 
     public static function GetAllAlbumImages(string $ID) : array
@@ -57,7 +63,7 @@ class Gallery extends Database
         }
     }
 
-    public static function DeleteAlbum(string $ID, string $BASE) : array
+    public static function DeleteAlbum(string $ID) : array
     {
         $mediaId = (new self)->query("SELECT fkGalleryMediaId FROM gallery WHERE fkGalleryAlbumId = :ID", [':ID' => $ID])->fetchAll();
         $galleryName = (new self)->query("SELECT albumName FROM albums WHERE albumId = :ID", [':ID' => $ID])->fetch();
@@ -90,7 +96,7 @@ class Gallery extends Database
         return (new self)->query("SELECT * FROM albums WHERE albumName = :NAME",[':NAME' => $DATA['albumName']])->fetch();
     }
 
-    public static function CurrentAlbum(string $ID) : object
+    public static function CurrentAlbum(string $ID)
     {
         return (new self)->query("SELECT * FROM albums WHERE albumId = :ID", [':ID' => $ID])->fetch();
     }
@@ -107,12 +113,14 @@ class Gallery extends Database
         return true;
     }
 
-    public static function UpdateAlbum($DATA, $ID = null) : bool
+    public static function UpdateAlbum(array $DATA, string $ALBUMID , string $ID = null) : bool
     {
-        (new self)->query("UPDATE albums SET `albumName` = :NAME, `albumEventId` = :EVENTID",
+        (new self)->query("UPDATE albums SET `albumName` = :NAME, `albumEventId` = :EVENTID
+                           WHERE albumId = :ALBUMID",
                            [
                                ':NAME' => $DATA['albumName'],
-                               ':EVENTID' => $ID
+                               ':EVENTID' => $ID,
+                               ':ALBUMID' => $ALBUMID
                            ]);
         return true;
     }

@@ -1,3 +1,12 @@
+<?php
+
+if(Permission::LevelCheck(90) == false)
+    {
+      Router::Redirect('/Admin');
+    }
+
+    ?>
+
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>

@@ -5,6 +5,7 @@
 if(isset($POST['search']) && !empty($POST['search']))
 {
     $searchResults = Search::SearchResults($POST['search']);
+    
 ?>
 <div class="search-results">
     <div class="title">
@@ -17,7 +18,7 @@ if(isset($POST['search']) && !empty($POST['search']))
     if(sizeof($searchResults['news']) > 0) {
         foreach($searchResults['news'] as $news)
         {
-            $desc = preg_replace('/\s+?(\S+)?$/', ' ...', substr($news->newsContent, 0, 197));
+            $desc = preg_replace('/\s+?(\S+)?$/', ' ...', substr($news->newsContent, 0, 97));
             echo '<div class="news-story">';
             echo '<h3>'.$news->newsTitle.'</h3>';
             echo '<p>'.ucwords(strftime('%d. %B - %Y', strtotime($news->newsStartDate))).'</p>';
@@ -27,7 +28,7 @@ if(isset($POST['search']) && !empty($POST['search']))
         }
     }else 
     {
-        echo '<h2>Der blev ikke fundet nogle resultater i nyheder efter - "'.$POST['search'].'"</h2>';
+        echo '<h2>Din søgnng retunerede ingen nyheder, prøv at omformulere søgningen.</h2>';
     }
     ?>
     </div>
@@ -48,7 +49,7 @@ if(isset($POST['search']) && !empty($POST['search']))
         }
     } else 
     {
-        echo '<h2>Der blev ikke fundet nogle resultater i arrangementer efter - "'.$POST['search'].'"</h2>';
+        echo '<h2>Din søgnng retunerede ingen arrangementer, prøv at omformulere søgningen.</h2>';
     }
     ?>
     </div>

@@ -28,9 +28,10 @@ class News extends Database
         return (new self)->query("SELECT * FROM news")->fetchAll();
     }
 
-    public static function DeleteNews(string $ID) : void
+    public static function DeleteNews(string $ID) : bool
     {
         (new self)->query("DELETE FROM news WHERE newsId = :ID", [':ID' => $ID]);
+        return true;
     }
 
     public static function CurrentNews(string $ID) : object

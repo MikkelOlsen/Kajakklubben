@@ -1,3 +1,9 @@
+<?php
+if(Permission::LevelCheck(90) == false)
+{
+  Router::Redirect('/Admin');
+}
+?>
 <a href="<?= Router::$BASE . 'Admin/Gallery/Create' ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Opret Galleri</a>
 
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">

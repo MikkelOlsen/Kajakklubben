@@ -1,4 +1,8 @@
 <?php
+if(Permission::LevelCheck(90) == false)
+{
+    Router::Redirect('/Admin');
+}
     if(Router::GetParamByName('ID') == NULL) {
         Router::Redirect('/Admin/Gallery');
     }
@@ -8,24 +12,16 @@
 
 
     if(isset($POST['submit'])) {
-        $eventId = null;
         $selectValid = false;
         $error = [];
         if(isset($POST['event']) && !empty($POST['event'])) 
         {
-            foreach($events as $singleEvent) {
-                if($POST['event'] == $singleEvent->eventsId )
-                {
-                    $selectValid = true;
-                    $eventId = $POST['event'];
-                    break;
-                }
-            }
-            if($selectValid == false)
-            {
-                $error['event'] = '<div class="error">Ugyldig begivenhed, genindlæs siden og prøv igen</div>';
-            }
+            $eventId = $POST['event'];
         } 
+        else 
+        {
+            $eventId = NULL;
+        }
         $DATA['albumName'] = Validate::stringBetween($POST['albumName'], 2, 45) ? $POST['albumName']  : $error['albumName'] = '<div class="error">Titlen må kun inholde bogstaver og tal. Samt være mellem 2 og 45 tegn.</div>';
         $eventName = str_replace(' ', '_', $POST['albumName']);
         $mediaId = [];
@@ -86,10 +82,10 @@
                         }
                         $status .= '</div>';
                     } 
-                } else {
-                    Gallery::UpdateAlbum($POST, $eventId);
+                } 
+                    var_dump($POST['event']);
+                    Gallery::UpdateAlbum($POST, Router::GetParamByName('ID') ,$eventId);
                     $currentAlbum = Gallery::CurrentAlbum(Router::GetParamByName('ID'));
-                }
         }
        }
 ?>
@@ -139,7 +135,6 @@
         <i class="material-icons current">check_circle</i> = Cover billede (Kan ikke slettes).
         <?php
             echo '<div class="albums">';
-            
             foreach($gallery as $galleryImage)
             {
                 $border = 'album_cover';

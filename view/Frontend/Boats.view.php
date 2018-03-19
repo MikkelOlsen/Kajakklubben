@@ -1,4 +1,13 @@
+<?php
+    $categories = Categories::GetAllCategories();
+?>
+
 <div class="boats">
+<?php
+if(sizeof($categories) > 0)
+{
+
+?>
     <h2>Bådpark</h2>
     <table class="boats-table" >
         <thead>
@@ -12,7 +21,8 @@
         </thead>
         <tbody>
         <?php
-            foreach(Categories::GetAllCategories() as $category)
+        
+            foreach($categories as $category)
             {
                 $products = Products::GetAllProducts($category->kajakTypeId);
                 if(sizeof($products) > 0) {
@@ -37,8 +47,16 @@
                 }
             }
             
+        
         ?>
             
         </tbody>
     </table>
+    <?php
+    }
+     else 
+     {
+         echo '<h2>Der er desværre ingen produkter.</h2>';
+     }
+    ?>
 </div>

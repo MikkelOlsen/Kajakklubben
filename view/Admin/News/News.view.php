@@ -1,3 +1,10 @@
+<?php
+  if(Permission::LevelCheck(90) == false)
+  {
+    Router::Redirect('/Admin');
+  }
+?>
+
 <a href="<?= Router::$BASE . 'Admin/News/Create' ?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Opret Nyhed</a>
 
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
